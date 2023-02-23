@@ -1,0 +1,169 @@
+﻿@using QL_HDPHONGLAB.Models
+@model List<BANGGIA>
+
+@{
+    ViewBag.Title = "Xem Bảng Giá";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style type="text/css">
+    table, th, td {
+        border: 1px solid #868585;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+        table tr:nth-child(odd) {
+            background-color: #eee;
+        }
+
+        table tr:nth-child(even) {
+            background-color: white;
+        }
+
+        table tr:nth-child(1) {
+            background-color: skyblue;
+        }
+
+    .body-content {
+        margin: 0 auto;
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+    }
+</style>
+
+<div class="body-content">
+    <h2>Bảng Giá Tham Khảo</h2>
+
+    <!--#region Bảng Giá Tham Khảo Hoá Chất-->
+    <a style="float: left;" class="total">Hoá Chất</a>
+    <div id="father">
+        <table class="table">
+            <tr>
+                <th>
+                    STT
+                </th>
+                <th>
+                    Nhà Cung Cấp
+                </th>
+                <th>
+                    Hoá Chất
+                </th>
+                <th>
+                    Giá Tham Khảo
+                </th>
+            </tr>
+
+            @{ var a = 1;}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @(a++)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NCC.TENNCC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HOACHAT.TENHC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GIATHAMKHAOHC)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    <!--#endregion Hoá Chất-->
+    <br />
+
+    <!--#region Bảng Giá THam Khảo Thiết Bị-->
+    <a style="float: left;" class="total">Thiết Bị</a>
+    <div id="father">
+        <table class="table">
+            <tr>
+                <th>
+                    STT
+                </th>
+                <th>
+                    Nhà Cung Cấp
+                </th>
+                <th>
+                    Thiết Bị
+                </th>
+                <th>
+                    Giá Tham Khảo
+                </th>
+            </tr>
+
+            @{ var b = 1;}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @(b++)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NCC.TENNCC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.THIETBI.TENTB)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GIATHAMKHAOTB)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    <!--#endregion Thiết Bị-->
+    <br />
+
+    <!--#region Bảng Giá Tham Khảo Dụng Cụ-->
+    <a style="float: left;" class="total">Dụng Cụ</a>
+    <div id="father">
+        <table class="table">
+            <tr>
+                <th>
+                    STT
+                </th>
+                <th>
+                    Nhà Cung Cấp
+                </th>
+                <th>
+                    Dụng Cụ
+                </th>
+                <th>
+                    Giá Tham Khảo
+                </th>
+            </tr>
+
+            @{ var c = 1;}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @(c++)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NCC.TENNCC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DUNGCU.TENDC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GIATHAMKHAODC)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    <!--#endregion Dụng Cụ-->
+</div>
+

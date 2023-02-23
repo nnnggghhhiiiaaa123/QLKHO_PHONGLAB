@@ -1,0 +1,56 @@
+﻿@model IEnumerable<QL_HDPHONGLAB.Models.DUTRUDUNGCU>
+<link rel="stylesheet" href="~/Areas/Admin/Content/vendor/iconfonts/mdi/css/materialdesignicons.min.css">
+
+@{
+    ViewBag.Title = "Dự Trù Dụng Cụ";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>DỰ TRÙ DỤNG CỤ</h2>
+
+<p class="btn btn-outline-danger btn-sm">
+    @Html.ActionLink("Tạo Mới", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Mã Dụng Cụ
+        </th>
+        <th>
+            Tên Dụng Cụ
+        </th>
+        <th>
+            Đặc Tả
+        </th>
+        <th>
+            Số Lượng
+        </th>
+        <th>
+            Các hành động
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MADC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TENDC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DACTA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SOLUONG)
+            </td>
+            <td>
+                <p class="btn btn-outline-info btn-sm"><i class="menu-icon mdi mdi-pencil"></i>@Html.ActionLink("Sửa", "Edit", new { id = item.MADC })</p>
+                @*@Html.ActionLink("Details", "Details", new { id = item.MAHC })*@
+                <p class="btn btn-outline-danger btn-sm"><i class="menu-icon mdi mdi-delete"></i>@Html.ActionLink("Xóa", "Delete", new { id = item.MADC })</p>
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,51 @@
+﻿@model QL_HDPHONGLAB.Models.SINHVIEN
+
+@{
+    ViewBag.Title = "Details - Sinh Viên";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Xem Chi Tiết</h2>
+
+<div>
+    <h4>Sinh Viên</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TENSV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENSV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NGAYSINH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGAYSINH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GIOITINH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GIOITINH)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.PHIEUXUATPHONGLAB.NOIDUNG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PHIEUXUATPHONGLAB.NOIDUNG)
+        </dd>*@
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = Model.MASV })
+    @Html.ActionLink("Về trang chủ", "Index")
+</p>

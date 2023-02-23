@@ -1,0 +1,109 @@
+﻿@using QL_HDPHONGLAB.Models
+@model HOANTRA
+@{
+    ViewBag.Title = "Chi Tiết Hoàn Trả";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@{ IEnumerable<TTBTRA> listHoaChatTra = ViewBag.HoaChatTra as IEnumerable<TTBTRA>; }
+
+<style>
+    .sort {
+        font-family: sans-serif;
+        font-size: 14px;
+        color: red;
+    }
+</style>
+
+<div class="container">
+    <div class="page-title-container">
+        <div class="row g-0">
+            <div class="col-auto mb-3 mb-md-0 me-auto">
+                <div class="w-auto">
+                    <h1 class="mb-0 pb-0 display-4" id="title">Phiếu Hoàn Trả</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mb-5">
+        <h2 class="small-title">Thông Tin Chi Tiết Hoàn Trả</h2>
+        <div class="card mb-2">
+            <div class="row g-0 card-body">
+                <div class="col">
+                    <div class="ps-4">
+                        <div class="row mb-1">
+                            <div class="col">
+                                <div class="heading text-primary mb-1">Mã Hoàn Trả: @Model.MAHT</div>
+                                <div class="mb-3">Ngày Trả: @Model.NGAYTRA</div>
+                                <div class="mb-3">Nội Dung: @Model.NOIDUNG</div>
+                                <div class="mb-3">Người Duyệt: @Model.NGUOITRA</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #region Phần Nguyên liệu xuất -->
+    <div class="row g-0">
+        <div class="col-12 mb-5">
+            <div id="checkboxTable">
+                <div class="mb-4 mb-lg-3 bg-transparent no-shadow d-none d-lg-block">
+                    <div class="row g-0">
+                        @*<div class="col-auto sw-11 d-none d-lg-flex"></div>*@
+                        <div class="col">
+                            <div class="ps-5 pe-4 h-100">
+                                <div class="row g-0 h-100 align-content-center custom-sort">
+                                    <div class="col-lg-3 d-flex flex-column mb-lg-0 pe-3 d-flex">
+                                        <div class="sort" data-sort="name">Hoá Chất</div>
+                                    </div>
+                                    <div class="col-lg-3 d-flex flex-column pe-1 justify-content-center">
+                                        <div class="sort" data-sort="sltra">Số Lượng Trả</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- #region Hiển Thị Nguyên Liệu -->
+                @foreach (var item in listHoaChatTra)
+                {
+                    <div class="card mb-2 selected" style="width: 50%">
+                        <div class="row g-0 h-100 sh-lg-9 position-relative">
+                            <div class="col py-4 py-lg-0">
+                                <div class="ps-5 pe-4 h-100">
+                                    <div class="row g-0 h-100 align-content-center">
+                                        <a href="#" class="col-11 col-lg-7 d-flex flex-column mb-lg-0 mb-3 pe-3 d-flex order-1 h-lg-100 justify-content-center">
+                                            @item.HOACHAT.TENHC
+                                            <div class="text-small text-muted text-truncate position">@item.MAHC_id</div>
+                                        </a>
+                                        <div class="col-12 col-lg-3 d-flex flex-column pe-1 mb-2 mb-lg-0 justify-content-center order-3">
+                                            @if (item.HOACHAT.MALHC == 4)
+                                            {
+                                                <div class="lh-1 text-alternate">@item.SOLUONGTRA Chai</div> }
+                                            else if (item.HOACHAT.MALHC == 1)
+                                            {
+                                                <div class="lh-1 text-alternate">@item.SOLUONGTRA Cái</div> }
+                                            else
+                                            {
+                                                <div class="lh-1 text-alternate">@item.SOLUONGTRA Kg</div>}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                <!-- #endregion -->
+                <div>
+                    <a href="/Admin/PhieuHoanTra/DanhSach" class="btn btn-danger" style="float: left;">Trở Về</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- #endregion -->
+</div>
+

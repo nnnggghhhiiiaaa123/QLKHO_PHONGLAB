@@ -1,0 +1,76 @@
+﻿@using QL_HDPHONGLAB.Models
+@model List<DsMuonHC>
+@{
+    ViewBag.Title = "Sửa danh sách hoá chất";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+
+<style type="text/css">
+    body {
+        background-image: url('../../../../Assets/images/bg_sky.jpg');
+    }
+
+    .divGioHang {
+        border: 2px solid #EEEEEE;
+        margin-left: 10%;
+        font-size: large
+    }
+
+        .divGioHang td {
+            padding: 10px;
+            border: 2px solid #EEEEEE;
+            text-align: center
+        }
+
+        .divGioHang th {
+            text-align: center
+        }
+</style>
+
+<body>
+    <center><h2 class="text-info"> DANH SÁCH HOÁ CHẤT MƯỢN <span class="fa fa-heart"></span></h2></center>
+
+    <table class="table-bordered font-italic divGioHang">
+        <tr>
+            <th> Mã Hoá Chất</th>
+
+            <th> Tên Hoá Chất</th>
+
+            <th> Ảnh Bìa</th>
+
+            <th> Số Lượng Mượn </th>
+
+        </tr>
+
+
+
+        @{
+            foreach (var item in Model)
+            {
+                    <tr>
+                        <td> @item.MAHC</td>
+
+                        <td> @item.TENHC</td>
+
+                        <td> <img src="@Url.Content("~/images/hoachat/" +item.HINHANH)" width="50" height="50" /></td>
+
+                        @*Chỉnh sửa Ds gọi về action CapNhatDS*@
+                        @using (Html.BeginForm("CapNhatDSMuonHC", "MuonTTB", new { @iMahc = item.MAHC }))
+                        {
+                            <td>@Html.TextBox("txtSoLuong", item.SOLUONG) </td>
+
+                            <td>
+                                <input type="submit" value="Cập nhật" class="btn btn-outline-secondary btn-sm" />
+                                @*Xóa DS gọi về Action XoaDS*@
+                                <button class="btn btn-outline-danger btn-sm">@Html.ActionLink("Xóa", "XoaDSMuonHC", new { @iMahc = item.MAHC })</button>
+                            </td>
+                        }
+
+                    </tr>
+            }
+        }
+
+    </table>
+</body>
+

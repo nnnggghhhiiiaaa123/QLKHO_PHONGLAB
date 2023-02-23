@@ -1,0 +1,187 @@
+﻿@using QL_HDPHONGLAB.Models
+@{
+    ViewBag.Title = "Nhập kho dụng cụ";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@{
+    IEnumerable<DUNGCU> listDungCu = ViewBag.DungCu as IEnumerable<DUNGCU>;
+    IEnumerable<NGUOIDUNG> listNhanVien = ViewBag.NhanVien as IEnumerable<NGUOIDUNG>;
+    IEnumerable<NCC> listNhaCungCap = ViewBag.NhaCungCap as IEnumerable<NCC>;
+}
+
+<div class="container">
+    <div class="page-title-container">
+        <div class="row">
+            <div class="col-12 col-md-7">
+                <h1 class="mb-0 pb-0 display-4" id="title">Nhập kho dụng cụ</h1>
+            </div>
+        </div>
+    </div>
+    @using (Html.BeginForm("NhapDungCu", "Kho"))
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col-6 col-lg order-1 order-lg-0">
+                <h2 class="small-title">Thông Tin Phiếu Nhập</h2>
+                <div id="addressForm" class="tooltip-label-end" novalidate="">
+                    <div class="card mb-5">
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-md-3 mb-3">
+                                    <label class="form-label">Nhân Viên Kho</label>
+                                    <select class="form-select" name="TaiKhoanNV_id">
+                                        @foreach (var item in listNhanVien)
+                                        {
+
+                                            <option value="@item.USERNAME">@item.HOTEN</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label class="form-label">Nhà Cung Cấp</label>
+                                    <select class="form-select" name="MaNCC_id">
+                                        @foreach (var item in listNhaCungCap)
+                                        {
+                                            <option value="@item.MANCC">@item.TENNCC</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <label class="form-label">Ngày Nhập</label>
+                                    <input type="date" class="form-control mask-currency" name="NGAYNHAP">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label class="form-label">Nội Dung Nhập</label>
+                                    <input type="text" class="form-control mask-currency" name="NOIDUNG">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- #region Phần Hoá Chất Nhập -->
+                <table class="table ChiTietPhieuNhap">
+                    <tr class="trAppend" style="display:none">
+                        <td>
+                            <select class="ddlDungCu form-select" name="">
+                                @foreach (var item in listDungCu)
+                                {
+                                    <option value="@item.MADC">@item.TENDC</option>
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            <input name="" class="txtSoLuongNhap form-control">
+                        </td>
+                        @*<td>
+                                <input name="" class="txtNoiDung form-control">
+                            </td>*@
+                        @*<td>
+                                <input name="" class="form-control" readonly>
+                            </td>*@
+                        <td>
+                            <input class="btnDelete" style="width:30px;height:30px" value="xóa">
+                        </td>
+                    </tr>
+                    <tr class="trFirstChild" data-id="-1">
+                        <td>Dụng Cụ</td>
+                        <td>Số Lượng Nhập</td>
+                        @*<td>Nội dung</td>*@
+                        @*<td>Thành Tiền</td>*@
+                        <td></td>
+                    </tr>
+                </table>
+                <input type="button" value="+" class="btn btn-success" id="btnAdd">
+                <input type="submit" value="Nhập Hàng" class="btn btn-primary" id="btnNhapHang">
+                <!-- #endregion -->
+
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    // Phần appen
+    $("#btnAdd").click(function () {
+        // lấy id của tr cuối cùng thuộc thẻ table có class = ChiTietphieuNhap
+        // Bước 4: Phương thức find là tìm đến thẻ nào đó: ở đây là thẻ tr (:last-child) là thẻ cuối cùng trong thẻ tblChiTietPhieuNhap
+        var id_cuoi = $(".ChiTietPhieuNhap").find("tr:last-child").attr("data-id");
+        i = parseInt(id_cuoi) + 1;
+        // Bước 1:Nội dung phía trong thẻ trAppend
+        var tdnoidung = $(".trAppend").html();
+        // Bước 2: Tạo 1 thẻ tr bao ngoài nội dung
+        var trnoidung = "<tr class=\"trAppended\" data-id=\"" + i + "\">" + tdnoidung + "</tr>";
+        // Bước 3: Lấy thẻ table append vào 1 tr
+        $(".ChiTietPhieuNhap").append(trnoidung);
+        loadIDLENTHE();
+    });
+
+    // Phương thức sử lý lấy thuộc tính attr từ thẻ tr gắn xuống chỉ xố phần tử các trong thuộc tính name của thẻ input
+    function loadIDLENTHE() {
+        $(".trAppended").each(function () {
+            var id = $(this).attr("data-id");
+            //var nameMaPhieuNhap = "[" + id + "].MaSach";
+            var nameMaDungCu = "[" + id + "].MADC"; // tạo ra mã dụng cụ
+            var nameSoLuongNhap = "[" + id + "].SOLUONGNHAP"; // tạo ra số lượng nhập
+            //var nameNoiDung = "[" + id + "].NOIDUNG"; // tạo ra nội dung nhập
+            $(this).find(".ddlDungCu").attr("name", nameMaDungCu); // gán name cho dropdowlist
+            $(this).find(".txtSoLuongNhap").attr("name", nameSoLuongNhap); // gan so luong nhap sach
+            //    $(this).find(".txtNoiDung").attr("name", nameNoiDung); // gan so luong nhap sach
+        });
+    }
+    // sử lý sự kiện xóa 1 dòng từ nút delete nằm bên trong thẻ tr
+    $("body").on("click", ".btnDelete", function () {
+        // Xóa phần tử cha phía ngoài
+        $(this).closest(".trAppended").remove();
+        CapNhatID();
+    });
+
+    function CapNhatID() {
+        //Lấy lại tr 1
+        var id_cuoi = $(".ChiTietPhieuNhap").find(".trFirstChild").attr("data-id");
+        i = parseInt(id_cuoi) + 1;
+
+        $(".trAppended").each(function () {
+            var id = i;
+            $(this).attr("data-id", i)
+            // cập nhật lại id (tr) khi xóa
+            var nameMaDungCu = "[" + id + "].MADC"; // tạo ra mã sp
+            var nameSoLuongNhap = "[" + id + "].SOLUONGNHAP"; // tạo ra số lượng nhập
+            /*var nameNoiDung = "[" + id + "].NoiDung"; // tạo ra nội dung nhập*/
+            $(this).find(".ddlDungCu").attr("name", nameMaDungCu); // gán name cho dropdowlist
+            $(this).find(".txtSoLuongNhap").attr("name", nameSoLuongNhap); // gan so luong nhap
+            //$(this).find(".txtNoiDung").attr("name", nameNoiDung); // gan so luong nhap sach
+            i++;
+        });
+    }
+    $("#btnNhapHang").click(function () {
+        if (KiemTraSoLuong() == false) {
+            return false;
+        }
+        //if (KiemtraNoiDung() == false) {
+        //    return false;
+        //}
+    })
+    // kiểm tra Số lượng
+    function KiemTraSoLuong() {
+        var bl = true;
+        // duyệt vòng lặp each
+        $(".txtSoLuongNhap").each(function () {
+            var giatri = $(this).val();
+            if (parseFloat(giatri) < 0) {
+                alert("Số lượng nhập lớn hơn 0");
+                bl = false;
+                return bl;
+            }
+            if (isNaN(giatri) == true) {
+                alert("Số lượng nhập không hợp lệ !");
+                bl = false;
+                return bl;
+            }
+        });
+        return bl;
+    }
+</script>
+

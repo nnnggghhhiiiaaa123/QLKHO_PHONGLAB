@@ -1,0 +1,81 @@
+﻿@model QL_HDPHONGLAB.Models.HOACHAT_CNTP
+
+@{
+    ViewBag.Title = "Detail_CNTP";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin2.cshtml";
+}
+
+<h2>Detail_CNTP</h2>
+
+<div>
+    <h4>HOACHAT</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TENHC_CNTP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENHC_CNTP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.THONGSO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.THONGSO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CASNO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CASNO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DONVI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DONVI)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.LUONGXUAT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LUONGXUAT)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LUONGTON)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LUONGTON)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CT_HOACHAT.XUATXU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CT_HOACHAT.XUATXU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DUTRUHOACHAT.TENHC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DUTRUHOACHAT.TENHC)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit_CNTP", new { id = Model.MAHC })

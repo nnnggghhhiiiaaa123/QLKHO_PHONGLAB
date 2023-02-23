@@ -1,0 +1,120 @@
+﻿@model QL_HDPHONGLAB.Models.GIANGVIEN
+
+@{
+    ViewBag.Title = "Delete - Giảng Viên";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    .body-content {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ff0000;
+        text-align: justify;
+    }
+</style>
+
+<h2>Xóa Giảng Viên</h2>
+
+<h3>Bạn có chắc chắn với sự lựa chọn này?</h3>
+<div class="body-content">
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Họ Tên:
+                @*@Html.DisplayNameFor(model => model.HOTEN)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.HOTEN)
+            </dd>
+
+            <dt>
+                Ngày Sinh:
+                @*@Html.DisplayNameFor(model => model.NGAYSINH)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NGAYSINH)
+            </dd>
+
+            <dt>
+                Giới Tính:
+                @*@Html.DisplayNameFor(model => model.GIOITINH)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.GIOITINH)
+            </dd>
+
+            <dt>
+                Số điện thoại:
+                @*@Html.DisplayNameFor(model => model.SDT)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SDT)
+            </dd>
+
+            <dt>
+                Địa chỉ:
+                @*@Html.DisplayNameFor(model => model.DIACHI)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DIACHI)
+            </dd>
+
+            <dt>
+                Vai Trò:
+                @*@Html.DisplayNameFor(model => model.VAITRO)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.VAITRO)
+            </dd>
+
+            @*<dt>
+                Dự Trù:
+                @Html.DisplayNameFor(model => model.DUTRU.TENDT)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DUTRU.TENDT)
+            </dd>*@
+
+            <dt>
+                Khoa:
+                @*@Html.DisplayNameFor(model => model.PHONGBAN.TENPHBAN)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PHONGBAN.TENPHBAN)
+            </dd>
+
+            @*<dt>
+                Phòng LAB:
+                @Html.DisplayNameFor(model => model.PHONGLAB.TENPHLAB)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PHONGLAB.TENPHLAB)
+            </dd>*@
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input class="btn btn-outline-danger btn-sm" type="submit" value="Xóa"  />
+            </div>
+        }
+    </div>
+</div>

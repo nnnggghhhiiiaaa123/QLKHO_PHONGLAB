@@ -1,0 +1,39 @@
+﻿@using QL_HDPHONGLAB.Models
+@model List<LOAITTB>
+@{
+    ViewBag.Title = "TTBPartial";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+<ul class="list-group list-group-flush text-left">
+    @{ 
+        foreach(var item in Model)
+            {
+                <li class="list-group-item">
+                    <a href="@Url.Action("HCTheoLoai", "TrangThietBi", new { @maloai = item.MALOAI})" style="text-transform: uppercase; text-decoration: none; font-size:20px;">@item.TENLOAI</a>
+                </li>
+            }
+    }
+</ul>
+
+<ul class="list-group list-group-flush text-left">
+    @{
+        foreach (var item in Model)
+        {
+            <li class="list-group-item">
+                <a href="@Url.Action("TBTheoLoai", "TrangThietBi", new { @maloai = item.MALOAI})" style="text-transform: uppercase; text-decoration: none; font-size:20px;">@item.TENLOAI</a>
+            </li>
+        }
+    }
+</ul>
+
+<ul class="list-group list-group-flush text-left">
+    @{
+        foreach (var item in Model)
+        {
+            <li class="list-group-item">
+                <a href="@Url.Action("DCTheoLoai", "TrangThietBi", new { @maloai = item.MALOAI})" style="text-transform: uppercase; text-decoration: none; font-size:20px;">@item.TENLOAI</a>
+            </li>
+        }
+    }
+</ul>

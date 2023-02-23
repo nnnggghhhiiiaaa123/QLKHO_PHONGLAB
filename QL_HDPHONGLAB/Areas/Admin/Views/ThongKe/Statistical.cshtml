@@ -1,0 +1,141 @@
+﻿@using QL_HDPHONGLAB.Models
+@{
+    ViewBag.Title = "Statistical";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@{ 
+    IEnumerable<PHIEUMUON> lstPM = ViewBag.lstPhieuMuon as IEnumerable<PHIEUMUON>;
+    IEnumerable<PHIEUTRA> lstPT = ViewBag.lstPhieuTra as IEnumerable<PHIEUTRA>;
+}
+
+<style type="text/css">
+    .body-content {
+        margin: 0 auto;
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+        background-image: url('../../../../Assets/images/bg_sky.jpg');
+    }
+
+    #father {
+        width: 100%;
+        overflow: auto;
+    }
+
+    table, th, td {
+        border: 1px solid #868585;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+        table tr:nth-child(odd) {
+            background-color: beige;
+        }
+
+        table tr:nth-child(even) {
+            background-color: blanchedalmond;
+        }
+
+        table tr:nth-child(1) {
+            background-color: aquamarine;
+        }
+</style>
+
+<div class="body-content">
+    <h2>DANH SÁCH THỐNG KÊ PHIẾU MƯỢN VÀ TRẢ</h2>
+
+    <!-- #region Phieu Tra -->
+    <a style="float:left" class="total">Phiếu Mượn</a>
+    <div id="father">
+        <table class="table">
+            <tr>
+                <th>
+                    Mã PM
+                </th>
+                <th>
+                    Ngày Mượn
+                </th>
+
+                <th>
+                    Chấp Nhận
+                </th>
+
+            </tr>
+
+            @foreach (var item in lstPM)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MAPM)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NGAYMUON)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CHAPNHAN)
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+    </div>
+
+    <br />
+    <h3 class="total">
+        Tổng số phiếu mượn: @ViewBag.total_PhieuMuon
+    </h3>
+    <br />
+    <!-- #endregion -->
+    <!-- #region Phieu Trả -->
+    <a style="float:left" class="total">Phiếu Trả</a>
+    <div id="father">
+        <table class="table">
+            <tr>
+                <th>
+                    Mã PT
+                </th>
+                <th>
+                    Ngày Trả
+                </th>
+
+                <th>
+                    Chấp Nhận
+                </th>
+            </tr>
+
+            @foreach (var item in lstPT)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MAPT)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NGAYTRA)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CHAPNHAN)
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+    </div>
+
+    <br />
+    <h3 class="total">
+        Tổng số phiếu trả: @ViewBag.total_PhieuTra
+    </h3>
+    <br />
+
+    <!-- #endregion -->
+    
+    <a style="font-size: 15px; float: left;" href="~/Admin/ThongKe/ThongKe">
+        Về Trang Chủ
+    </a>
+</div>

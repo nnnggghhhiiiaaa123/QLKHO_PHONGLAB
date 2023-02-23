@@ -1,0 +1,66 @@
+﻿@model QL_HDPHONGLAB.Models.NSX
+
+@{
+    ViewBag.Title = "Delete - NSX";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    .body-content {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ff0000;
+        text-align: justify;
+    }
+</style>
+
+<h2>Xóa NSX</h2>
+
+<h3>Bạn có chắc với sự lựa chọn này?</h3>
+<div class="body-content">
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Tên NSX:
+                @*@Html.DisplayNameFor(model => model.TENNSX)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TENNSX)
+            </dd>
+
+            <dt>
+                Số điện thoại:
+                @*@Html.DisplayNameFor(model => model.SDT)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SDT)
+            </dd>
+
+            <dt>
+                Địa chỉ:
+                @*@Html.DisplayNameFor(model => model.DIACHI)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DIACHI)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input class="btn btn-outline-danger btn-sm" type="submit" value="Xóa" /> |
+            </div>
+        }
+    </div>
+</div>

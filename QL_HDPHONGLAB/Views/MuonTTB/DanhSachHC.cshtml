@@ -1,0 +1,111 @@
+﻿@using QL_HDPHONGLAB.Models;
+@model List<DsMuonHC>
+@{
+    ViewBag.Title = "Danh Sách Hoá Chất Mượn";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+
+<style type="text/css">
+    body {
+        background-image: url('../../../../Assets/images/bg_sky.jpg');
+    }
+
+    .divGioHang {
+        border: 2px solid #EEEEEE;
+        margin-left: 10%;
+        font-size: large
+    }
+
+        .divGioHang td {
+            padding: 10px;
+            border: 2px solid #EEEEEE;
+            text-align: center
+        }
+
+        .divGioHang th {
+            text-align: center
+        }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("btnChapNhan").click(function () {
+            SaveTTBData();
+        });
+    });
+
+    function SaveTTBData() {
+        $.ajax({
+            async: true,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function (data) {
+                if (data.success === true) {
+                    alert("Đã mượn trang thiết bị!");
+                    
+                }
+            },
+            error: function () {
+                alert('Có lỗi trong quá trình thực thi. Mời thử lại!');
+            }
+        });
+    }
+</script>
+
+<body>
+    <div id="formTTB">
+        <center>
+            <h2 class="" style="text-align: center;"> DANH SÁCH HOÁ CHẤT MƯỢN <span class="fa fa-heart"></span></h2>
+            <br />
+            <table class="table-hover table-bordered divGioHang">
+                <tr style="">
+                    <th> Mã Hoá Chất </th>
+
+                    <th> Tên Hoá Chất </th>
+
+                    <th> Ảnh Bìa </th>
+
+                    <th> Số Lượng Mượn </th>
+
+                    @*<th> Lượng Tồn </th>*@
+                </tr>
+
+
+                @{
+                    foreach (var item in Model)
+                    {
+                        <tr class="font-italic">
+                            <td> @item.MAHC</td>
+
+                            <td> @item.TENHC</td>
+
+                            <td> <img src="@Url.Content("~/images/hoachat/" +item.HINHANH)" width="50" height="50" /></td>
+
+                            <td> @item.SOLUONG Cái</td>
+
+                        </tr>
+                    }
+                }
+
+                <tr>
+                    <td colspan="6" style="text-align:right">
+
+                        @Html.ActionLink("Chỉnh sửa danh sách", "SuaDSHC")
+                    </td>
+                    <td colspan="6" style="text-align:right;color:blue">
+                        @using (Html.BeginForm("ChapNhanHC", "MuonTTB", new { @class = "" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <input id="btnChapNhan" type="submit" value="Chấp nhận" class="btn btn-secondary" />
+                        }
+                    </td>
+                </tr>
+            </table>
+
+        </center>
+    </div>
+</body>
+

@@ -1,0 +1,57 @@
+﻿@model QL_HDPHONGLAB.Models.THIETBI_CNTP
+
+@{
+    ViewBag.Title = "Details_CNTP";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin2.cshtml";
+}
+
+<h2>Details_CNTP</h2>
+
+<div>
+    <h4>THIETBI</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TENTB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENTB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QUICACH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QUICACH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SLTON)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SLTON)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SLTHANHLY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SLTHANHLY)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SERIAL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SERIAL)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit_CNTP", new { id = Model.MATB })
+</p>

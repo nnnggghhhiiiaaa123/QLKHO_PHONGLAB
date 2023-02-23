@@ -1,0 +1,79 @@
+﻿@using QL_HDPHONGLAB.Models;
+@model List<DsMuonTB>
+@{
+    ViewBag.Title = "Danh Sách Thiết Bị Mượn";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+<style type="text/css">
+    body {
+        background-image: url('../../../../Assets/images/bg_sky.jpg');
+    }
+
+    .divGioHang {
+        border: 2px solid #EEEEEE;
+        margin-left: 10%;
+        font-size: large
+    }
+
+        .divGioHang td {
+            padding: 10px;
+            border: 2px solid #EEEEEE;
+            text-align: center
+        }
+
+        .divGioHang th {
+            text-align: center
+        }
+</style>
+
+<body>
+    <center>
+        <h2 class="" style="text-align: center;"> DANH SÁCH THIẾT BỊ MƯỢN <span class="fa fa-heart"></span></h2>
+        <br />
+        <table class="table-hover table-bordered divGioHang">
+            <tr style="">
+                <th> Mã Thiết Bị </th>
+
+                <th> Tên Thiết BỊ </th>
+
+                <th> Ảnh Bìa </th>
+
+                <th> Số Lượng Mượn </th>
+
+            </tr>
+
+
+            @{
+                foreach (var item in Model)
+                {
+                    <tr class="font-italic">
+                        <td> @item.MATB</td>
+
+                        <td> @item.TENTB</td>
+
+                        <td> <img src="@Url.Content("~/images/thietbi/" +item.HINHANH)" width="50" height="50" /></td>
+
+                        <td> @item.SOLUONG Cái</td>
+
+                    </tr>
+                }
+            }
+
+            <tr>
+                <td colspan="6" style="text-align:right">
+
+                    @Html.ActionLink("Chỉnh sửa danh sách", "SuaDSTB")
+                </td>
+                <td colspan="6" style="text-align:right;color:blue">
+                    @using (Html.BeginForm("ChapNhanTB", "MuonTTB", new { @class = "" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="submit" value="Chấp nhận" class="btn btn-secondary" />
+                    }
+                </td>
+            </tr>
+        </table>
+    </center>
+</body>
+

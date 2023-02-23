@@ -1,0 +1,91 @@
+﻿@model QL_HDPHONGLAB.Models.GIANGVIEN
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>GIANGVIEN</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HOTEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HOTEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NGAYSINH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGAYSINH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GIOITINH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GIOITINH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SDT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DIACHI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DIACHI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VAITRO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VAITRO)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.DUTRU.TENDT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DUTRU.TENDT)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PHONGBAN.TENPHBAN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PHONGBAN.TENPHBAN)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.PHONGLAB.TENPHLAB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PHONGLAB.TENPHLAB)
+        </dd>*@
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MAGV }) 
+    @Html.ActionLink("Back to List", "Index")
+</p>

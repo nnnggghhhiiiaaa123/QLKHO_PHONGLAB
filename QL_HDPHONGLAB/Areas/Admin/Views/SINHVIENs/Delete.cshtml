@@ -1,0 +1,77 @@
+﻿@model QL_HDPHONGLAB.Models.SINHVIEN
+
+@{
+    ViewBag.Title = "Delete - Sinh Viên";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    .body-content {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ff0000;
+        text-align: justify;
+    }
+</style>
+
+<h2>Xóa Sinh Viên</h2>
+
+<h3>Bạn có chắc chắn với sự lựa chọn này?</h3>
+
+<div class="body-content">
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Tên SV
+                @*@Html.DisplayNameFor(model => model.TENSV)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TENSV)
+            </dd>
+
+            <dt>
+                Ngày Sinh
+                @*@Html.DisplayNameFor(model => model.NGAYSINH)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NGAYSINH)
+            </dd>
+
+            <dt>
+                Giới Tính
+                @*@Html.DisplayNameFor(model => model.GIOITINH)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.GIOITINH)
+            </dd>
+
+            @*<dt>
+                Nội Dung
+                @Html.DisplayNameFor(model => model.PHIEUXUATPHONGLAB.NOIDUNG)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PHIEUXUATPHONGLAB.NOIDUNG)
+            </dd>*@
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input class="btn btn-outline-danger btn-sm" type="submit" value="Xóa"/>
+            </div>
+        }
+    </div>
+</div>
+

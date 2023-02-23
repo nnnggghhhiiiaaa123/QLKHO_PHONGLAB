@@ -1,0 +1,110 @@
+﻿@model QL_HDPHONGLAB.Models.DUNGCU
+
+@{
+    ViewBag.Title = "Delete - Dụng Cụ";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    .body-content {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ff0000;
+        text-align: justify;
+    }
+</style>
+
+<h2>Xóa Dụng Cụ</h2>
+
+<h3>Bạn có chắc chắn với sự lựa chọn này?</h3>
+<div class="body-content">
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Tên Dụng Cụ:
+                @*@Html.DisplayNameFor(model => model.TENDC)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TENDC)
+            </dd>
+
+            <dt>
+                Lượng Nhập:
+                @*@Html.DisplayNameFor(model => model.SOLUONG)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LUONGNHAP)
+            </dd>
+            <dt>
+                Lượng Xuất:
+                @*@Html.DisplayNameFor(model => model.SOLUONG)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LUONGXUAT)
+            </dd>
+            <dt>
+                Lượng Tồn
+                @*@Html.DisplayNameFor(model => model.SOLUONG)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LUONGTON)
+            </dd>
+
+            <dt>
+                Lượng Thanh Lý
+                @*@Html.DisplayNameFor(model => model.SOLUONG)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LUONGTHANHLY)
+            </dd>
+
+
+            <dt>
+                Đơn Vị:
+                @*@Html.DisplayNameFor(model => model.DVT)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DVT)
+            </dd>
+
+            <dt>
+                Ngày Nhập:
+                @*@Html.DisplayNameFor(model => model.NGAYNHAP)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NGAYNHAP)
+            </dd>
+
+            <dt>
+                Giờ Sử Dụng:
+                @*@Html.DisplayNameFor(model => model.GIOSD)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.GIOSD)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input class="btn btn-outline-danger btn-sm" type="submit" value="Xóa"  />
+            </div>
+        }
+    </div>
+</div>

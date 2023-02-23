@@ -1,0 +1,141 @@
+﻿@using QL_HDPHONGLAB.Models
+@model PHIEUNHAP
+
+@{ ViewBag.Title = "Cập Nhật Phiếu Nhập";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; }
+
+@{ IEnumerable<CHITIETPHIEUNHAP> listChiTiet = ViewBag.ChiTiet as IEnumerable<CHITIETPHIEUNHAP>;
+   IEnumerable<NGUOIDUNG> listNhanVien = ViewBag.NhanVien as IEnumerable<NGUOIDUNG>;
+}
+
+<style>
+    .sort {
+        font-family: sans-serif;
+        font-size: 14px;
+        color: red;
+    }
+</style>
+<div class="container" id="DanhSachPhieuNhap">
+    <div class="page-title-container">
+        <div class="row g-0">
+            <div class="col-auto mb-3 mb-md-0 me-auto">
+                <div class="w-auto">
+                    <h1 class="mb-0 pb-0 display-4" id="title">Cập Nhật Phiếu Nhập</h1>
+                </div>
+            </div>
+            <div class="w-100 d-md-none"></div>
+            <div class="col-12 col-sm-6 col-md-auto d-flex align-items-end justify-content-end mb-2 mb-sm-0 order-sm-3">
+                <a href="/Admin/Kho/NhapKho" class="btn btn-outline-primary btn-icon btn-icon-start ms-0 ms-sm-1 w-100 w-md-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-plus"><path d="M10 17 10 3M3 10 17 10"></path></svg>
+                    <span>Thêm Mới</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row g-0">
+        <div class="col-12 mb-5">
+            <div class="card mb-2">
+                <div class="row g-0 card-body">
+                    <div class="col">
+                        <div class="ps-4">
+                            <div class="row mb-1">
+                                <center>
+                                    <div class="col">
+                                        <div class="mb-3">Mã Phiếu Nhập: @Model.MAPN</div>
+                                        <div class="mb-3">Ngày Nhập: @Model.NGAYNHAP</div>
+                                        <div class="mb-3">Nội Dung: @Model.NOIDUNG</div>
+                                        @{ foreach (var item in listNhanVien)
+                                            {
+                                                <div class="mb-3">Người Nhận: @item.HOTEN</div>
+                                            }
+                                        }
+
+                                        <div class="mb-3">Ghi Chú: @Model.GHICHU</div>
+                                    </div>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="checkboxTable">
+                <div class="mb-4 mb-lg-3 bg-transparent no-shadow d-none d-lg-block">
+                    <div class="row g-0">
+                        <div class="col">
+                            <div class="ps-5 pe-4 h-100">
+                                <div class="row g-0 h-100 align-content-center custom-sort">
+                                    <div class="col-lg-2 d-flex flex-column mb-lg-0 pe-3 d-flex">
+                                        <div class="sort" data-sort="MaNguyenLieu">Tên Sản Phẩm</div>
+                                    </div>
+                                    <div class="col-lg-2 d-flex flex-column pe-1 justify-content-center">
+                                        <div class="sort" data-sort="SoLuongNhap">Số Lượng Nhập</div>
+                                    </div>
+                                    <div class="col-lg-2 d-flex flex-column pe-1 justify-content-center">
+                                        <div class="sort" data-sort="Tu">Từ</div>
+                                    </div>
+                                    <div class="col-lg-2 d-flex flex-column pe-1 justify-content-center">
+                                        <div class="sort" data-sort="Den">Đến</div>
+                                    </div>
+                                    <div class="col-lg-2 d-flex flex-column pe-1 justify-content-center">
+                                        <div class="sort">Cập Nhật</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- #region Hiển Thị Hoá Chất -->
+                <div class="list">
+                    @foreach (var item in listChiTiet)
+                    {
+                        <div class="card mb-2 selected">
+                            <div class="row g-0 h-100 sh-lg-9 position-relative">
+                                <div class="col py-4 py-lg-0">
+                                    <div class="ps-5 pe-4 h-100">
+                                        <div class="row g-0 h-100 align-content-center">
+                                            @using (Html.BeginForm("CapNhat", "PhieuNhap", new { @iMaPhieuNhap = item.MAPN, @iMaHoaChat = item.MAHC, @strURL = Request.Url.ToString() }, FormMethod.Post, new { @class = "row" }))
+                                            {
+                                                <a href="#" class="col-11 col-lg-2 d-flex flex-column mb-lg-0 mb-3 pe-3 d-flex order-1 h-lg-100 justify-content-center MaNguyenLieu">
+                                                    @item.HOACHAT.TENHC
+                                                    <div class="text-small text-muted text-truncate position">#@item.HOACHAT.MAHC</div>
+                                                </a>
+
+                                                <div class="col-12 col-lg-2 d-flex flex-column pe-1 mb-2 mb-lg-0 justify-content-center order-2 SOLUONGNHAP">
+                                                    <input type="number" min="1" value="@item.SOLUONGNHAP" class="form-control" style="width:80px" name="txtSoLuongNhap" />
+                                                </div>
+                                                <div class="col-12 col-lg-2 d-flex flex-column pe-1 mb-2 mb-lg-0 justify-content-center order-3 Tu">
+                                                    <input type="text" value="@item.TU" class="form-control" style="width:130px" name="txtTu" />
+                                                </div>
+                                                <div class="col-12 col-lg-2 d-flex flex-column pe-1 mb-2 mb-lg-0 justify-content-center order-3 Tu">
+                                                    <input type="text" value="@item.DEN" class="form-control" style="width:130px" name="txtDen" />
+                                                </div>
+                                                <div class="col-12 col-lg-2 d-flex flex-column pe-1 mb-2 mb-lg-0 align-items-center justify-content-center order-5 TENHC">
+                                                    <input class="btn btn-primary" type="submit" value="Cập Nhật" style="align-items:center; width:98px" />
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>}
+                </div>
+
+                <div style="float:left;">
+                    <a href="/Admin/PhieuNhap/DanhSachPhieuNhap" class="btn btn-danger">Trở Về</a>
+                </div>
+                <!-- #endregion -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- #region Phân Trang, tìm kiếm, lọc -->
+<script type="text/javascript">
+    var options = {
+        valueNames: ['MAHC', 'TENHC', 'SOLUONGNHAP', 'TU', 'DEN'],
+        page: 12,
+        pagination: true
+    };
+    var userList = new List('DanhSachPhieuNhap', options);
+</script>
+<!-- #endregion -->

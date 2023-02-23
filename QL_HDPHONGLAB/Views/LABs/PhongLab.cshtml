@@ -1,0 +1,227 @@
+﻿@model QL_HDPHONGLAB.Models.LABViewModel
+@{
+    ViewBag.Title = "Phòng LAB";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+<h2>Phòng LAB</h2>
+
+<div style="margin-top: 50px">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#divAddRoom" data-backdrop="static" data-keyboard="false">Thêm Phòng</button>
+</div>
+
+<div id="divAddRoom" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Phòng LAB</h4>
+            </div>
+            <div class="modal-body">
+                <form id="formRoom">
+                    <div class="container">
+                        @Html.HiddenFor(model => model.MAPHLAB, new { @id = "txtMaPhong" })
+                        Mã Phòng:
+                        @*@Html.LabelFor(model => model.MAPHLAB)*@
+                        @Html.TextBoxFor(model => model.MAPHLAB, new { @class = "form-control", id = "txtMaPhong" })
+                        <div class="form-group ">
+                            Số Phòng:
+                            @*@Html.LabelFor(model => model.SOPHONG)*@
+                            @Html.TextBoxFor(model => model.SOPHONG, new { @class = "form-control", id = "txtSoPhong" })
+                            @Html.ValidationMessageFor(model => model.SOPHONG, null, new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group ">
+                            Trạng Thái:
+                            @*@Html.LabelFor(model => model.TRANGTHAI)*@
+                            @Html.DropDownListFor(model => model.TRANGTHAI, Model.DSDangKy, new { @class = "form-control", id = "ddTrangThai" })
+                            @Html.ValidationMessageFor(model => model.TRANGTHAI, null, new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group ">
+                            Loại Phòng
+                            @*@Html.LabelFor(model => model.LOAIPHONG)*@
+                            @Html.DropDownListFor(model => model.LOAIPHONG, Model.DSLoaiPhong, new { @class = "form-control", id = "ddLoaiPhong" })
+                            @Html.ValidationMessageFor(model => model.LOAIPHONG, null, new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group ">
+                            Sức Chứa Của Phòng:
+                            @*@Html.LabelFor(model => model.SUCCHUA)*@
+                            @Html.TextBoxFor(model => model.SUCCHUA, new { @class = "form-control", id = "txtSucChua" })
+                            @Html.ValidationMessageFor(model => model.SUCCHUA, null, new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group ">
+                            Địa Điểm:
+                            @*@Html.LabelFor(model => model.DIADIEM)*@
+                            @Html.TextBoxFor(model => model.DIADIEM, new { @class = "form-control", id = "txtDiaDiem" })
+                            @Html.ValidationMessageFor(model => model.DIADIEM, null, new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            Ghi Chú:
+                            @*@Html.LabelFor(model => model.GHICHU)*@
+                            @Html.TextBoxFor(model => model.GHICHU, new { @class = "form-control", id = "txtGhiChu" })
+                            @Html.ValidationMessageFor(model => model.GHICHU, null, new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            Hình Ảnh Phòng LAB:
+                            @*@Html.LabelFor(model => model.HINHANH)*@
+                            <input id="UploadImage" type="file" class="form-control" name="roomImage" title="Load Image" onchange="DisplayImage(this)" />
+                            <img id="imgRoom" height="200" width="200" style="border: solid" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="btnSave" type="button" class="btn btn-success">Lưu</button>&nbsp;
+                <button type="button" data-dismiss="modal" class="btn btn-danger">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="margin-top: 10px"></div>
+<div id="divLoadRoomDetails">
+
+</div>
+
+<script src="~/Scripts/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        LoadRoomDetails();
+        // Xoá phòng lab
+        $("#txtMaPhong").val("0");
+
+        $("#btnSave").click(function () {
+            if (!$("#formRoom").valid()) {
+                return;
+            }
+            SaveRoomData();
+        });
+    });
+
+    function EditRoom(maphlab) {
+        $.ajax({
+            async: true,
+            type: 'GET',
+            dataType: 'JSON',
+            contentType: 'application/json; charset=utf-8',
+            data: { maphlab: maphlab },
+            url: '/LABs/SuaPhongLab',
+            success: function (data) {
+                $("#txtSoPhong").val(data.SOPHONG);
+                $("#ddTrangThai").val(data.TRANGTHAI);
+                $("#ddLoaiPhong").val(data.LOAIPHONG);
+                $("#txtSucChua").val(data.SUCCHUA);
+                $("#txtDiaDiem").val(data.DIADIEM);
+                $("#txtGhiChu").val(data.GHICHU);
+                $("#imgRoom").attr('src', "../RoomImages/" + data.HINHANH);
+                $("#divAddRoom").modal({ show: true });
+                $("#txtMaPhong").val(data.MAPHLAB);
+                $("#btnSave").text("Update");
+            },
+            error: function () {
+                var a = maphlab
+                alert('Có lỗi mời nhập lại!');
+            }
+        })
+    }
+
+    function DeleteRoom(maphlab) {
+        var result = confirm("Bạn có chắc xoá mục này?");
+        if (result === false) {
+            return false;
+        }
+        $.ajax({
+            async: true,
+            type: 'GET',
+            dataType: 'JSON',
+            contentType: 'application/json, charset=utf-8',
+            data: { maphlab: maphlab },
+            url: '/LABs/XoaPhongLab',
+            success: function (data) {
+                if (data.success === true) {
+                    alert(data.message);
+                    LoadRoomDetails();
+                }
+            },
+            error: function () {
+                alert('Có lỗi trong quá trình thực thi. Mời thử lại!');
+            }
+        })
+    }
+
+    function LoadRoomDetails() {
+        $.ajax({
+            async: true,
+            data: 'GET',
+            dataType: 'HTML',
+            contentType: false,
+            processData: false,
+            url: '/LABs/GetAllLabs',
+            success: function (data) {
+                $("#divLoadRoomDetails").html(data);
+            },
+            error: function () {
+                alert('Có lỗi trong quá trình thực thi. Mời thử lại!');
+            }
+
+        });
+    }
+
+    function SaveRoomData() {
+        var formData = new FormData;
+        formData.append("Mã Phòng", $("#txtMaPhong").val());
+        formData.append("Số Phòng", $("#txtSoPhong").val());
+        formData.append("Trạng Thái", $("#ddTrangThai").val());
+        formData.append("Loại Phòng", $("#ddLoaiPhong").val());
+        formData.append("Sức Chứa Của Phòng", $("#txtSucChua").val());
+        formData.append("Địa Điểm", $("#txtDiaDiem").val());
+        formData.append("Ghi Chú", $("#txtGhiChu").val());
+        formData.append("Hình Ảnh", $("#UploadImage").get(0).files[0]);
+
+        $.ajax({
+            async: true,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function (data) {
+                if (data.success === true) {
+                    alert(data.message);
+                    ResetRoomInformation();
+                    LoadRoomDetails();
+                }
+            },
+            error: function () {
+                alert('Có lỗi trong quá trình thực thi. Mời thử lại!');
+            }
+        });
+    }
+
+    function ResetRoomInformation() {
+        $("#txtSoPhong").val('');
+        $("#ddTrangThai").val(1);
+        $("#ddLoaiPhong").val(1);
+        $("#txtSucChua").val('');
+        $("#txtGhiChu").val('');
+        $("#UploadImage").val('');
+        $("#txtSoPhong").focus();
+        $("#imgRoom").removeAttr('src');
+        $("#txtMaPhong").val('0');
+        $("#btnSave").val("Save");
+    }
+
+    function DisplayImage(result) {
+        if (result.files && result.files[0]) {
+            var fileReader = new FileReader;
+            fileReader.onload = function (e) {
+                $("#imgRoom").attr('src', e.target.result);
+            }
+            fileReader.readAsDataURL(result.files[0]);
+        }
+    }
+</script>

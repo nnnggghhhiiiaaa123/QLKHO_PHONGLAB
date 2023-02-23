@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <title>HOẠT ĐỘNG KHO PHÒNG LAB - USERS</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Areas/Admin/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="~/Areas/Admin/Content/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="~/Areas/Admin/Content/assets/css/templatemo-seo-dream.css">
+    <link rel="stylesheet" href="~/Areas/Admin/Content/assets/css/animated.css">
+    <link rel="stylesheet" href="~/Areas/Admin/Content/assets/css/owl.css">
+    <link rel="shortcut icon" href="~/Areas/Admin/Content/assets/images/favicon.png" />
+    <style>
+        body {
+            background-image: url('../../../../Assets/images/bg_sky.jpg');
+        }
+        .container-fluid {
+            clear: both;
+            position: relative;
+            margin-top: 115px;
+            margin-right: 50px;
+        }
+    </style>
+    @RenderSection("head", required: false)
+</head>
+
+<body>
+
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+        <div class="preloader-inner">
+            <span class="dot"></span>
+            <div class="dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="@Url.Action("Index", "Home")" class="logo">
+                            <h4>Users<img src="~/Areas/Admin/Content/assets/images/logo-icon.png" alt=""></h4>
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li class="scroll-to-section"><a href="@Url.Action("Index", "Home")" class="active">Trang chủ</a></li>
+                            <li class="scroll-to-section"><a href="@Url.Action("Gioithieu", "Home")">Giới thiệu</a></li>
+                            @*<li class="scroll-to-section"><a href="@Url.Action("Index", "NhaCungCap")">Nhà cung cấp</a></li>
+                            <li class="scroll-to-section"><a href="@Url.Action("Index", "NhaSanXuat")">Nhà sản xuất</a></li>*@
+                            <li class="scroll-to-section"><a href="@Url.Action("PhanLoai", "Home")">Trang Thiết Bị</a></li>
+                            <li class="scroll-to-section"><a href="@Url.Action("FormDangNhap", "Login")">Đăng nhập</a></li>
+                            @*<li class="scroll-to-section"><a href="@Url.Action("Register", "Login")">Đăng ký</a></li>*@
+                            <li class="scroll-to-section"><a href="@Url.Action("ChangePassword", "Login")">Đổi mật khẩu</a></li>
+                            @*<li class="nav-item" style="text-align: right;">
+                                <a href="@Url.Action("Index", "MuonTTB")" style="margin: 0 30px 30px 0; text-decoration: none;">
+                                    <img src="~/images/TrangChu/Account.png" style="width: 35px;" class="rounded-pill" id="logo"/>
+                                </a>
+                            </li>*@
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <div class="container-fluid">
+        @RenderBody()
+    </div>
+
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>
+                        Copyright © 2022 Quản lý hoạt động kho phòng lab
+
+                        <br>Facebook: <a style="color:red;" rel="nofollow" href="https://www.facebook.com/profile.php?id=100029518185853&mibextid=ZbWKwL" title="tong dang khoa">Tống Đăng Khoa</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="~/Areas/Admin/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Areas/Admin/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Areas/Admin/Content/assets/js/owl-carousel.js"></script>
+    <script src="~/Areas/Admin/Content/assets/js/animation.js"></script>
+    <script src="~/Areas/Admin/Content/assets/js/imagesloaded.js"></script>
+    <script src="~/Areas/Admin/Content/assets/js/custom.js"></script>
+
+</body>
+</html>

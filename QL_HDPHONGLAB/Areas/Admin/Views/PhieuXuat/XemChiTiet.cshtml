@@ -1,0 +1,140 @@
+﻿@using QL_HDPHONGLAB.Models
+@model List<CHITIETPHIEUXUAT>
+@{
+    ViewBag.Title = "Chi Tiết Phiếu Xuất";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+@{
+    IEnumerable<PHIEUXUAT> lstPX = ViewBag.PhieuXuat as IEnumerable<PHIEUXUAT>;
+    PHIEUXUAT px = ViewBag.PhieuXuat as PHIEUXUAT;
+}
+
+<style>
+    .sort{
+        font-family: sans-serif;
+        font-size: 14px;
+        color: red;
+    }
+</style>
+
+<div class="container">
+    <div class="page-title-container">
+        <div class="row g-0">
+            <div class="col-auto mb-3 mb-md-0 me-auto">
+                <div class="w-auto sw-md-30">
+                    <h1 class="mb-0 pb-0 display-4" id="title">Phiếu Xuất</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mb-5">
+        <h2 class="small-title">Thông Tin Chi Tiết Phiếu Xuất Kho</h2>
+        <div class="card mb-2">
+            <div class="row g-0 card-body">
+                <div class="col">
+                    <div class="ps-4">
+                        <div class="row mb-1">
+                            @*@foreach (var item in lstPX)
+                            {
+                                <div class="col">
+                                    <div class="heading text-primary mb-1">Mã Phiếu Xuất: @item.MAPX</div>
+                                    <div class="mb-3">Ngày Xuất: @item.NGAYXUAT</div>
+                                </div>
+                            }*@
+
+                            <div class="col">
+                                <div class="heading text-primary mb-1">Mã Phiếu Xuất: @px.MAPX</div>
+                                <div class="mb-3">Ngày Xuất: @px.NGAYXUAT</div>
+                                <div class="mb-3">Phòng Ban: @px.PHONGBAN.TENPHBAN</div>
+                                <div class="mb-3">Người Kiểm Duyệt: @px.NGUOICHAPNHAN</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #region Phần Hoá Chất Xuất -->
+    <div class="row g-0">
+        <div class="col-12 mb-5">
+                <div id="checkboxTable">
+                    <div class="mb-4 mb-lg-3 d-lg-block">
+                        <div class="row g-0">
+                            <div class="col">
+                                <div class="ps-5 pe-4 h-100">
+                                    <div class="row g-0 h-100 align-content-center">
+                                        <div class="col-lg-2 d-flex flex-column mb-lg-0 pe-3 d-flex justify-content-center">
+                                            <div class="sort" data-sort="name">Hoá Chất</div>
+                                        </div>
+                                        <div class="col-lg-2 d-flex flex-column pe-1 justify-content-center">
+                                            <div class="sort" data-sort="soluong">Số Lượng Xuất</div>
+                                        </div>
+                                        <div class="col-lg-2 d-flex flex-column pe-1 justify-content-center">
+                                            <div class="sort" data-sort="TU">Từ</div>
+                                        </div>
+                                        <div class="col-lg-2 d-flex flex-column pe-1 justify-content-center">
+                                            <div class="sort" data-sort="DEN">Đến</div>
+                                        </div>
+                                        <div class="col-lg-2 d-flex flex-column pe-1 justify-content-center">
+                                            <div class="sort" data-sort="TENHC">Action</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- #region Hiển Thị Hoá Chất -->
+                    @foreach (var view in Model)
+                    {
+                        <div class="card mb-2 selected" style="width: 100%">
+                            <div class="row g-0 h-100 sh-lg-9 position-relative">
+                                <div class="col py-4 py-lg-0">
+                                    <div class="ps-5 pe-4 h-100">
+                                        <div class="row g-0 h-100">
+                                            <a href="#" class="col-11 col-lg-2 d-flex flex-column mb-lg-0 mb-3 pe-3 d-flex order-1 h-lg-100">
+                                                @view.HOACHAT.TENHC
+                                                <div class="text-small text-muted text-truncate position">#@view.MAHC</div>
+                                            </a>
+                                            <div class="col-12 col-lg-2 d-flex flex-column pe-1 mb-2 mb-lg-0 justify-content-center order-3">
+                                                @if (view.HOACHAT.MALHC == 4)
+                                                {
+                                                    <div class="lh-1 text-alternate">@view.SOLUONGXUAT Chai</div> }
+                                                else if (view.MAHC == "HC01")
+                                                {
+                                                    <div class="lh-1 text-alternate">@view.SOLUONGXUAT Cái</div> }
+                                                else
+                                                {
+                                                    <div class="lh-1 text-alternate">@view.SOLUONGXUAT Kg</div>
+                                                }
+
+                                            </div>
+
+                                            <div class="col-12 col-lg-2 d-flex flex-column pe-1 mb-2 mb-lg-0 justify-content-center order-3 TU">
+                                                <div class="lh-1 text-alternate">@view.TU</div>
+                                            </div>
+                                            <div class="col-12 col-lg-2 d-flex flex-column pe-1 mb-2 mb-lg-0 justify-content-center order-3 DEN">
+                                                <div class="lh-1 text-alternate">@view.DEN</div>
+                                            </div>
+
+                                            <div class="col-12 col-lg-2 d-flex flex-column pe-1 mb-2 mb-lg-0 align-items-center justify-content-center order-5">
+                                                <div>
+                                                    <a href="/Admin/HOACHATs/Edit?iMaHoaChat" class="btn btn-primary">Cập Nhật</a>                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- #endregion -->
+                    <div style="float:left;">
+                        <a href="/Admin/PhieuXuat/DanhSachPhieuXuat" class="btn btn-danger">Trở Về</a>
+                    </div>
+
+                </div>
+        </div>
+    </div>
+    <!-- #endregion -->
+</div>

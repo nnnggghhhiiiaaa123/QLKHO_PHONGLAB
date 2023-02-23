@@ -1,0 +1,40 @@
+﻿@model IEnumerable<QL_HDPHONGLAB.Models.PHONGLAB>
+@{
+    ViewBag.Title = "Thêm Phòng Lab";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Thêm Phòng Lab</title>
+</head>
+<body>
+    <div>
+        <table class="table">
+            <tr>
+                <th>Mã Phòng</th>
+                <th>Số Phòng</th>
+                <th>Sức Chứa</th>
+                <th>Địa Điểm</th>
+                <th>Ghi Chú</th>
+                <th>Action</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.MAPHLAB</td>
+                    <td>@item.SOPHONG</td>
+                    <td>@item.SUCCHUA</td>
+                    <td>@item.DIADIEM</td>
+                    <td>@item.GHICHU</td>
+                    <td><a href="/PhongLAB/Delete_PHONGLAB?id=@item.MAPHLAB"><i class="glyphicon glyphicon-trash"></i></a></td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>
+

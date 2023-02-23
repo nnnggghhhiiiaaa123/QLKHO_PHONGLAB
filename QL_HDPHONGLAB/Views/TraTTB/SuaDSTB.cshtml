@@ -1,0 +1,78 @@
+﻿@using QL_HDPHONGLAB.Models
+@model List<DsTraTB>
+@{
+    ViewBag.Title = "Sửa Danh Sách Thiết Bị Trả";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+<style type="text/css">
+    body {
+        background-image: url('../../../../Assets/images/bg_sky.jpg');
+    }
+
+    .divGioHang {
+        border: 2px solid #EEEEEE;
+        margin-left: 10%;
+        font-size: large
+    }
+
+        .divGioHang td {
+            padding: 10px;
+            border: 2px solid #EEEEEE;
+            text-align: center
+        }
+
+        .divGioHang th {
+            text-align: center
+        }
+</style>
+
+<body>
+    <center><h2 class="text-info"> DANH SÁCH THIẾT BỊ TRẢ <span class="fa fa-heart"></span></h2></center>
+
+    <table class="table-bordered font-italic divGioHang">
+        <tr>
+            <th> Mã Thiết Bị</th>
+
+            <th> Tên Thiết Bị</th>
+
+            <th> Ảnh Bìa</th>
+
+            <th> Số Lượng Trả </th>
+
+        </tr>
+
+
+
+        @{
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td> @item.MATB</td>
+
+                    <td> @item.TENTB</td>
+
+                    <td> <img src="@Url.Content("~/images/thietbi/" +item.HINHANH)" width="50" height="50" /></td>
+
+                    @*Chỉnh sửa DS gọi về action CapNhatDS*@
+                    @using (Html.BeginForm("CapNhatDSTraTB", "TraTTB", new { @iMatb = item.MATB }))
+                    {
+                        <td>@Html.TextBox("txtSoLuong", item.SOLUONG) </td>
+
+                        <td>
+                            <input type="submit" value="Cập nhật" class="btn btn-outline-secondary btn-sm" />
+                            @*Xóa DS gọi về Action XoaDS*@
+                            <button class="btn btn-outline-danger btn-sm">@Html.ActionLink("Xóa", "XoaDSTraTB", new { @iMatb = item.MATB })</button>
+                        </td>
+                    }
+
+                </tr>
+            }
+        }
+
+    </table>
+</body>
+
+
+
+

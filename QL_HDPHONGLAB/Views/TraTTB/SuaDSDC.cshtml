@@ -1,0 +1,75 @@
+﻿@using QL_HDPHONGLAB.Models
+@model List<DsTraDC>
+@{
+    ViewBag.Title = "Sửa Danh Sách Dụng Cụ Trả";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+<style type="text/css">
+    body {
+        background-image: url('../../../../Assets/images/bg_sky.jpg');
+    }
+
+    .divGioHang {
+        border: 2px solid #EEEEEE;
+        margin-left: 10%;
+        font-size: large
+    }
+
+        .divGioHang td {
+            padding: 10px;
+            border: 2px solid #EEEEEE;
+            text-align: center
+        }
+
+        .divGioHang th {
+            text-align: center
+        }
+</style>
+
+<body>
+    <center><h2 class="text-info"> DANH SÁCH DỤNG CỤ TRẢ <span class="fa fa-heart"></span></h2></center>
+
+    <table class="table-bordered font-italic divGioHang">
+        <tr>
+            <th> Mã Dụng Cụ</th>
+
+            <th> Tên Dụng Cụ</th>
+
+            <th> Ảnh Bìa</th>
+
+            <th> Số Lượng Trả </th>
+
+        </tr>
+
+        @{
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td> @item.MADC</td>
+
+                    <td> @item.TENDC</td>
+
+                    <td> <img src="@Url.Content("~/images/dungcu/" +item.HINHANH)" width="50" height="50" /></td>
+
+                    @*Chỉnh sửa ds gọi về action CapNhatDS*@
+                    @using (Html.BeginForm("CapNhatDSTraDC", "TraTTB", new { @iMadc = item.MADC }))
+                    {
+                        <td>@Html.TextBox("txtSoLuong", item.SOLUONG) </td>
+
+                        <td>
+                            <input type="submit" value="Cập nhật" class="btn btn-outline-secondary btn-sm" />
+                            @*Xóa ds gọi về Action XoaDS*@
+                            <button class="btn btn-outline-danger btn-sm">@Html.ActionLink("Xóa", "XoaDSTraDC", new { @iMadc = item.MADC })</button>
+                        </td>
+                    }
+
+                </tr>
+            }
+        }
+
+    </table>
+</body>
+
+
+

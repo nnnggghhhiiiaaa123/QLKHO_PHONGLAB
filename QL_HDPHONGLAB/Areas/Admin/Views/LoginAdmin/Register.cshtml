@@ -1,0 +1,121 @@
+﻿@model QL_HDPHONGLAB.Models.NGUOIDUNG
+
+@{
+    ViewBag.Title = "Register";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Đăng Ký Tài Khoản</title>
+    <!-- base:css -->
+    <link rel="stylesheet" href="~/Assets/vendors/typicons.font/font/typicons.css">
+    <link rel="stylesheet" href="~/Assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="~/Assets/css/vertical-layout-light/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="~/Assets/images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="content-wrapper d-flex align-items-center auth px-0">
+                <div class="row w-100 mx-0">
+                    <div class="col-lg-4 mx-auto">
+                        <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                            <center>
+                                <div class="brand-logo">
+                                    <img src="~/Assets/images/hufi_logo.svg" alt="logo">
+                                </div>
+                                <h3>Đăng ký</h3>
+                                <h6 class="font-weight-light">Đăng ký dễ dàng để sử dụng hệ thống</h6>
+                            </center>
+                            @using (Html.BeginForm("Register", "LoginAdmin", FormMethod.Post))
+                            {
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.HOTEN, new { @class = "form-control", @required = "required", @autofocus = "autofocus", @placeholder = "Họ Tên" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.USERNAME, new { @class = "form-control", @required = "required", @autofocus = "autofocus", @placeholder = "Username" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.PasswordFor(m => m.PASSWORD, new { @class = "form-control", @required = "required", @placeholder = "Password" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.PasswordFor(m => m.CONFIRMPASSWORD, new { @class = "form-control", @required = "required", @placeholder = "ConfirmPassword" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.EMAIL, new { @class = "form-control", @required = "required", @autofocus = "autofocus", @placeholder = "Email" })
+                                    @if (ViewBag.error != null)
+                                    {
+                                        @ViewBag.error
+                                    }
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.DIENTHOAI, new { @class = "form-control", @required = "required", @autofocus = "autofocus", @placeholder = "Điện Thoại" })
+                                </div>
+
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        <label class="form-check-label text-muted">
+                                            <input type="checkbox" class="form-check-input">
+                                            Tôi đồng ý với các điều khoản trên.
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Đăng Ký" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" />
+                                    </div>
+                                </div>
+                                <div class="text-center mt-4 font-weight-light">
+                                    Đã có tài khoản? <a href="@Url.Action("Dangnhap", "LoginAdmin")" class="text-primary">Đăng nhập</a>
+                                </div>
+                            }
+
+                            @*<div class="form-group">
+            <select class="form-control form-control-lg" id="exampleFormControlSelect2">
+                <option>Quốc Gia</option>
+                <option>Nước Mỹ</option>
+                <option>Anh Quốc</option>
+                <option>Ấn Độ</option>
+                <option>Đức</option>
+                <option>Argentina</option>
+                <option>Brazil</option>
+                <option>Việt Nam</option>
+            </select>
+        </div>*@
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- base:js -->
+    <script src="~/Assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="~/Assets/js/off-canvas.js"></script>
+    <script src="~/Assets/js/hoverable-collapse.js"></script>
+    <script src="~/Assets/js/template.js"></script>
+    <script src="~/Assets/js/settings.js"></script>
+    <script src="~/Assets/js/todolist.js"></script>
+    <!-- endinject -->
+</body>
+
+</html>
+

@@ -1,0 +1,107 @@
+﻿@model IEnumerable<QL_HDPHONGLAB.Models.GIANGVIEN>
+<link rel="stylesheet" href="~/Areas/Admin/Content/vendor/iconfonts/mdi/css/materialdesignicons.min.css">
+
+@{
+    ViewBag.Title = "Giảng Viên";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style type="text/css">
+
+    table, th, td {
+        border: 1px solid #868585;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+        table tr:nth-child(odd) {
+            background-color: #eee;
+        }
+
+        table tr:nth-child(even) {
+            background-color: white;
+        }
+
+        table tr:nth-child(1) {
+            background-color: skyblue;
+        }
+
+    .body-content {
+        margin: 0 auto;
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+    }
+</style>
+<div class="body-content">
+    <h2>DANH SÁCH GIẢNG VIÊN</h2>
+
+    <p class="btn btn-outline-danger btn-sm">
+        @Html.ActionLink("Tạo Mới", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Họ Tên
+            </th>
+            <th>
+                Ngày Sinh
+            </th>
+            <th>
+                Giới Tính
+            </th>
+            <th>
+                Điện Thoại
+            </th>
+            <th>
+                Địa Chỉ
+            </th>
+            <th>
+                Vai Trò
+            </th>
+
+            <th>
+                Tên Phòng Ban
+            </th>
+            <th>
+                Các hành động
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HOTEN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NGAYSINH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GIOITINH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SDT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DIACHI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VAITRO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PHONGBAN.TENPHBAN)
+                </td>
+                <td>
+                    <p class="btn btn-outline-info btn-sm"><i class="menu-icon mdi mdi-pencil"></i>@Html.ActionLink("Sửa", "Edit", new { id = item.MAGV })</p>
+                    @*@Html.ActionLink("Details", "Details", new { id = item.MAHC })*@
+                    <p class="btn btn-outline-danger btn-sm"><i class="menu-icon mdi mdi-delete"></i>@Html.ActionLink("Xóa", "Delete", new { id = item.MAGV })</p>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+

@@ -1,0 +1,91 @@
+﻿@model IEnumerable<QL_HDPHONGLAB.Models.PHIEUTHANHLY>
+
+@{
+    ViewBag.Title = "KVTL";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style type="text/css">
+    #father {
+        width: 100%;
+        overflow: auto;
+    }
+
+    table, th, td {
+        border: 1px solid #868585;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+        table tr:nth-child(odd) {
+            background-color: beige;
+        }
+
+        table tr:nth-child(even) {
+            background-color: blanchedalmond;
+        }
+
+        table tr:nth-child(1) {
+            background-color: aquamarine;
+        }
+</style>
+
+<div class="containter">
+    <br />
+    <h2>Khu Vực Thanh Lý</h2>
+
+    <div id="father">
+        <table class="table">
+            <tr>
+                <th>
+                    Mã Thanh Lý
+                </th>
+                <th>
+                    Ngày Thanh Lý
+                </th>
+                @*<th>
+                    Người Duyệt
+                </th>
+                <th>
+                    Nội Dung Thanh Lý
+                </th>
+                <th>
+                    Ghi Chú
+                </th>*@
+                <th>
+                    Action
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MATL)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NGAYTL)
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.NGUOIDUYET)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NOIDUNG)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GHICHU)
+                    </td>*@
+                    <td>
+                        @*<a class="btn btn-outline-primary" href="/Admin/KhuVucThanhLy/CapNhat?iMaTL=@item.MATL" style="text-decoration: none">Cập nhật</a>*@
+                        @*<a class="btn btn-outline-primary" href="/Admin/KhuVucThanhLy/ChiTiet?iMaTL=@item.MATL" style="text-decoration: none">Chi Tiết</a>*@
+                        <a class="btn btn-outline-primary" href="/Admin/KhuVucThanhLy/XuLy?iMaTL=@item.MATL" style="text-decoration: none">Xử Lý</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+

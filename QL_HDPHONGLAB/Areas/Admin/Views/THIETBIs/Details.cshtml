@@ -1,0 +1,60 @@
+﻿@model QL_HDPHONGLAB.Models.THIETBI
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>THIETBI</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TENTB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENTB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QUICACH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QUICACH)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SLTON)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SLTON)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TAPHUAN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TAPHUAN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SERIAL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SERIAL)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MATB })
+    @Html.ActionLink("Back to List", "Index")
+</p>

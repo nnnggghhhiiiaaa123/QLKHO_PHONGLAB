@@ -1,0 +1,123 @@
+﻿@using QL_HDPHONGLAB.Models
+<link rel="stylesheet" href="~/Areas/Admin/Content/vendor/iconfonts/mdi/css/materialdesignicons.min.css">
+
+@{
+    ViewBag.Title = "Danh sách nhà cung cấp";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@{
+    IEnumerable<NCC> lstNCC = ViewBag.ListNCC as IEnumerable<NCC>;
+    IEnumerable<BANGGIA> lstBangGia = ViewBag.ListBangGia as IEnumerable<BANGGIA>;
+}
+<style type="text/css">
+    table, th, td {
+        border: 1px solid #868585;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+        table tr:nth-child(odd) {
+            background-color: #eee;
+        }
+
+        table tr:nth-child(even) {
+            background-color: white;
+        }
+
+        table tr:nth-child(1) {
+            background-color: skyblue;
+        }
+
+    .body-content {
+        margin: 0 auto;
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+    }
+</style>
+
+<div class="body-content">
+    <h2>NHÀ CUNG CẤP</h2>
+
+    <p class="btn btn-outline-danger btn-sm">
+        @Html.ActionLink("Hợp Tác", "Create")
+    </p>
+    <table class="table">
+        <tr id="table_header">
+            <!--<th>
+                Mã NCC-->
+            @*@Html.DisplayNameFor(model => model.MANSX)*@
+            <!--</th>-->
+            <th>
+                Tên NCC
+                @*@Html.DisplayNameFor(model => model.TENNSX)*@
+            </th>
+            <th>
+                Điện Thoại
+                @*@Html.DisplayNameFor(model => model.SDT)*@
+            </th>
+            <th>
+                Địa Chỉ
+                @*@Html.DisplayNameFor(model => model.DIACHI)*@
+            </th>
+            <th>
+                Các hành động
+                @*@Html.DisplayNameFor(model => model.DIACHI)*@
+            </th>
+        </tr>
+
+        @foreach (var item in lstNCC)
+        {
+            <tr id="table_content">
+
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.MANCC)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.TENNCC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SDT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DIACHI)
+                </td>
+                <td>
+                    <p class="btn btn-outline-info btn-sm"><i class="menu-icon mdi mdi-pencil"></i>@Html.ActionLink("Sửa", "Edit", new { id = item.MANCC })</p>
+                    @*@Html.ActionLink("Details", "Details", new { id = item.MAHC })*@
+                    <p class="btn btn-outline-danger btn-sm"><i class="menu-icon mdi mdi-delete"></i>@Html.ActionLink("Xóa", "Delete", new { id = item.MANCC })</p>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    @*region Hiển Thị Bảng Giá
+    <div id="BangGiaThamKhao">
+        <h2>BẢNG GIÁ THAM KHẢO</h2>
+        <table class="table">
+            <tr class="" trFirstChild">
+                <th>STT</th>
+                <th>Nhà Cung Cấp</th>
+                <th>Hoá Chất</th>
+                <th>Giá Tham Khảo</th>
+            </tr>
+
+            @{ var a = 1;}
+            @foreach (var view in lstBangGia)
+            {
+                <tr class="trAppend" style="display:none">
+                    <td id="stt">@(a++)</td>
+                    <td id="ncc">@view.NCC.TENNCC</td>
+                    <td id="hc">@view.HOACHAT.TENHC</td>
+                    <td id="gia">@view.GIATHAMKHAO</td>
+                </tr>
+            }
+        </table>
+    </div>*@
+    <a href="@Url.Action("XemBangGia", "NhaCungCap")" id="btnAdd" class="btn btn-success">Xem Bảng GIá</a>
+    @*<input type="button" value="Xem Bảng GIá" class="btn btn-success" id="btnAdd">*@
+</div>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="59c00700a0be468fa8dc6c36f3f638d7" Name="Diagram1">
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.BANGGIA" Width="1.5" PointX="8.25" PointY="58" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.CHITIETKIEMDUYET" Width="1.5" PointX="5.25" PointY="39.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.CHITIETPHIEUNHAP" Width="1.5" PointX="8.25" PointY="52.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.CHITIETPHIEUNHAP_KHOA" Width="1.5" PointX="7.5" PointY="69.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.CHITIETPHIEUTHANHLY" Width="1.5" PointX="8.25" PointY="62.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.CHITIETPHIEUXUAT" Width="1.5" PointX="5.25" PointY="51.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.CT_DUNGCU" Width="1.5" PointX="5.25" PointY="47.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.CT_HOACHAT" Width="1.5" PointX="5.25" PointY="42.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.CT_PHIEUMUON" Width="1.5" PointX="11.25" PointY="58.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.CT_PHIEUTRA" Width="1.5" PointX="11.25" PointY="54.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.CT_THIETBI" Width="1.5" PointX="5.25" PointY="73" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.DANGKYPHONG" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.DOIMATKHAU" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.DUNGCU" Width="1.5" PointX="3" PointY="35.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.DUNGCU_CNTP" Width="1.5" PointX="5.25" PointY="56.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.DUTRUDUNGCU" Width="1.5" PointX="5.25" PointY="60.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.DUTRUHOACHAT" Width="1.5" PointX="5.25" PointY="36.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.DUTRUTHIETBI" Width="1.5" PointX="5.25" PointY="77.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.GIANGVIEN" Width="1.5" PointX="3" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.HOACHAT" Width="1.5" PointX="3" PointY="43.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.HOACHAT_CNTP" Width="1.5" PointX="8.25" PointY="44.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.HOANTRA" Width="1.5" PointX="6" PointY="89.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.LISTTHANHLY" Width="1.5" PointX="11.25" PointY="62.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.LOAIHOACHAT" Width="1.5" PointX="0.75" PointY="42.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.LOAIPHONGLAB" Width="1.5" PointX="7.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.LOAITTB" Width="1.5" PointX="0.75" PointY="45.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.MUONDC" Width="1.5" PointX="5.25" PointY="66.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.MUONHC" Width="1.5" PointX="5.25" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.MUONTB" Width="1.5" PointX="5.25" PointY="79.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.NCC" Width="1.5" PointX="3.75" PointY="26.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.NGUOIDUNG" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.NSX" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.PHANQUYEN" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.PHIEUKIEMDUYET" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.PHIEUMUON" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.PHIEUNHAP" Width="1.5" PointX="6" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.PHIEUNHAP_KHOA" Width="1.5" PointX="10.5" PointY="69.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.PHIEUTHANHLY" Width="1.5" PointX="9.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.PHIEUTRA" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.PHIEUXUAT" Width="1.5" PointX="3" PointY="50.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.PHIEUXUATPHONGLAB" Width="1.5" PointX="12.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.PHONGBAN" Width="1.5" PointX="0.75" PointY="51.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.PHONGLAB" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.SINHVIEN" Width="1.5" PointX="7.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.SUKIEN" Width="1.5" PointX="5.25" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.THIETBI" Width="1.5" PointX="3" PointY="77.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.THIETBI_CNTP" Width="1.5" PointX="5.25" PointY="82.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.TRADC" Width="1.5" PointX="5.25" PointY="69.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.TRAHC" Width="1.5" PointX="5.25" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.TRATB" Width="1.5" PointX="5.25" PointY="86.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.TTBTRA" Width="1.5" PointX="8.25" PointY="66.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_HDPHONGLABModel.TTDANGKY" Width="1.5" PointX="9.75" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_BANGGIA_DUNGCU" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_BANGGIA_HOACHAT" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_BANGGIA_NCC" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_BANGGIA_THIETBI" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_MAKD_MAHC" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_CTPN_DC" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_CTPN_HC" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_CTPN_PN" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_CTPN_TB" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_CHITIETPHIEUNHAP_KHOA_HOACHAT_CNTP" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_CNPNK_MADC" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_CTPNK_MATB" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_CHITIETPHIEUTHANHLY_DUNGCU" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_CHITIETPHIEUTHANHLY_HOACHAT" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_CHITIETPHIEUTHANHLY_THIETBI" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_CTPX_DC" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_CTPX_HC" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_CTPX_HC_CNTP" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_CTPX_PX" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_CTPX_TB" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_CT_DUNGCU_DUNGCU" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_CT_HOACHAT_HOACHAT" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_CT_PHIEUMUON_DC" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_CT_PHIEUMUON_HC" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_CT_PHIEUMUON_TB" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_CT_PHIEUTRA_DC" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_CT_PHIEUTRA_HC" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_CT_PHIEUTRA_TB" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_CT_THIETBI_THIETBI" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_DOIMATKHAU_NGUOIDUNG" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_DUNGCU_CNTP_DUNGCU" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_DUTRUDUNGCU_DUNGCU" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_LISTTL_DUNGCU" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_MALOAI_DC" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_MUONDC_MADC" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_TRADC_MADC" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_TTBTRA_MADC" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_PNK_MADC" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_DUTRUHOACHAT_HOACHAT" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_DUTRUTHIETBI_THIETBI" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_GIANGVIEN_PHBAN" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_SK_GV" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_HOACHAT_CNTP_HOACHAT" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_HOACHAT_LOAIHC" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_LISTTL_HOACHAT" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_MALOAI_HC" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_MUONHC_MAHC" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_TRAHC_MAHC" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_TTBTRA_MAHC" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_HOACHAT_CNTP_LOAIHOACHAT" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_PHIEUNHAP_KHOA_HOACHAT_CNTP" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_TTBTRA_MAHT" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_LISTTL_THIETBI" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_PHONGLAB_LOAIPHONGLAB" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_MALOAI_TB" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_MUONTB_MATB" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_PHIEUNHAP_NCC" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_NGUOIDUNG_PHANQUYEN" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_PHIEUMUON_ND" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_PHIEUTRA_ND" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_PNK_MATB" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_PHIEUXUAT_PHONGBAN" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_PHIEUXUATPHONGLAB_PHLAB" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_THIETBI_CNTP_THIETBI" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_TRATB_MATB" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_HDPHONGLABModel.FK_TTBTRA_MATB" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

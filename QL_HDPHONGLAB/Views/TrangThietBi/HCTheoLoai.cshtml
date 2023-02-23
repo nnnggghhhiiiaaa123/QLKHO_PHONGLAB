@@ -1,0 +1,86 @@
+﻿@using QL_HDPHONGLAB.Models
+@model List<HOACHAT>
+@{
+    ViewBag.Title = "Hoá Chất Theo Loại";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+<style>
+    body {
+        background-image: url('../../../../Assets/images/bg_sky.jpg');
+    }
+
+    .card-body {
+        display: flex;
+        justify-content: space-between;
+        margin-left: -1rem;
+        flex-flow: row wrap;
+    }
+
+    .card {
+        flex: 1 0;
+        margin-left: 1rem;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        margin-top: 10px;
+        position: relative;
+        display: block;
+        float: left;
+        clear: both;
+    }
+
+    .cas {
+        font-size: 13px;
+        color: red;
+    }
+
+    .text-muted {
+        font-size: 12px;
+    }
+</style>
+
+<body>
+    <h2 style="text-align: center;">HOÁ CHẤT THEO LOẠI</h2>
+
+    <div class="card-body">
+        @{
+            foreach (var item in Model)
+            {
+                <div class="col-3" style="float: left; margin:15px; margin-left: 50px; width: 175px;">
+
+                    <img src="~/images/hoachat/@item.HINHANH" style="width: 100%; height: 200px; text-align: center;">
+
+                    @if (item.TENHC.Length > 30)
+                    {
+                <p style="text-align: center;">
+                    <strong title="@item.TENHC">@item.TENHC.Substring(0, 30)...</strong><br />
+                    @*<small class="text-muted"><s><span>@item.THONGSO</span></s></small>*@
+                    <small class="cas"><span>Số Cas: @item.CASNO</span></small>
+                    <br />
+                    <a class="btn btn-primary" href="@Url.Action("DangKyMuonHC", "TTBUser", new{@msp=item.MAHC})" style="text-decoration: none;">Mượn</a>
+                    <a class="btn btn-secondary" href="@Url.Action("DangKyTraHC", "TTBUser", new{@msp=item.MAHC})" style="text-decoration: none;">Trả</a>
+
+                </p>
+                    }
+                    else
+                    {
+                <p style="text-align: center;">
+                    <strong title="@item.TENHC">@item.TENHC</strong><br />
+                    @*<small class="text-muted"><s><span>@item.THONGSO</span></s></small>*@
+                    <small class="cas"><span>Số Cas: @item.CASNO</span></small>
+                    <br />
+                    <a class="btn btn-primary" href="@Url.Action("DangKyMuonHC", "TTBUser", new{@msp=item.MAHC})" style="text-decoration: none;">Mượn</a>
+                    <a class="btn btn-secondary" href="@Url.Action("DangKyTraHC", "TTBUser", new{@msp=item.MAHC})" style="text-decoration: none;">Trả</a>
+                </p>
+                    }
+                </div>
+                if (item == null)
+                {
+                    <p style="color: red;">@ViewBag.TBTheoLoai</p>
+                    break;
+                }
+            }
+        }
+
+    </div>
+</body>

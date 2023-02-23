@@ -1,0 +1,84 @@
+﻿@using QL_HDPHONGLAB.Models
+@model DUNGCU
+@{
+    ViewBag.Title = "Đăng Ký Trả Dụng Cụ";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+<style>
+    body {
+        background-image: url('../../../../Assets/images/bg_sky.jpg');
+    }
+
+    .body-content {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-attachment: fixed;
+        height: 100vh;
+        font-size: 15px;
+    }
+
+    .form-group {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+
+    .details {
+        position: relative;
+        max-width: 600px;
+        padding: 50px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        color: #000;
+    }
+
+    .product-title:hover {
+        color: red;
+    }
+
+    .rating, text-muted, .price {
+        display: flex;
+        justify-content: center;
+    }
+
+    .add-to-cart, .like {
+        background-color: orange;
+    }
+
+    .footer {
+        float: right;
+    }
+</style>
+
+<center>
+    <div class="body-content">
+        <div class="details col-md-6">
+            <h2>Chi Tiết Dụng Cụ</h2>
+            <h3 class="product-title">@Html.DisplayFor(model => model.TENDC)</h3>
+            <p class="product-images">
+                <img src="@Url.Content("~/images/dungcu/" +@Model.HINHANH)" height="250" width="250" />
+            </p>
+            <div class="box-content">
+                <p class="product-description">Lượng Tồn: <span>@Html.DisplayFor(model => model.LUONGTON)</span></p> <!--Mô tả chèn sau-->
+                <small class="text-muted">Giờ Sử Dụng: <s><span>@Html.DisplayFor(model => model.GIOSD) tiếng</span></s></small>
+                <h4 class="price">Ngày Nhập: <span> @Html.DisplayFor(model => model.NGAYNHAP)</span></h4>
+
+                @using (Html.BeginForm("ThemDSTraDC", "TraTTB", new { @iMadc = Model.MADC, @strURL = Request.Url.ToString() }))
+                {
+                    <input class="add-to-cart btn btn-default" type="submit" value="Trả Dụng Cụ" id="bgnDanhSach" />
+                    <a href="@Url.Action("DanhSachDC", "TraTTB")" style="margin: 0 30px 30px 0; text-decoration: none;">
+                        <img src="~/images/TrangChu/Account.png" style="width: 35px;" class="rounded-pill" id="logo" />
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</center>
+
+

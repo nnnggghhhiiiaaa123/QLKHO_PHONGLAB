@@ -1,0 +1,153 @@
+﻿@using QL_HDPHONGLAB.Models
+@{
+    ViewBag.Title = "Statistical2";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@{ 
+    IEnumerable<PHIEUNHAP_KHOA> lstPN_K = ViewBag.lstPhieuNhap_Khoa as IEnumerable<PHIEUNHAP_KHOA>;
+    IEnumerable<PHIEUTHANHLY> lstTL = ViewBag.lstPhieuTL as IEnumerable<PHIEUTHANHLY>;
+}
+
+<style type="text/css">
+    .body-content {
+        margin: 0 auto;
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+        background-image: url('../../../../Assets/images/bg_sky.jpg');
+    }
+
+    #father {
+        width: 100%;
+        overflow: auto;
+    }
+
+    table, th, td {
+        border: 1px solid #868585;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+        table tr:nth-child(odd) {
+            background-color: beige;
+        }
+
+        table tr:nth-child(even) {
+            background-color: blanchedalmond;
+        }
+
+        table tr:nth-child(1) {
+            background-color: aquamarine;
+        }
+</style>
+
+<div class="body-content">
+    <h2>DANH SÁCH THỐNG KÊ PHIẾU NHẬP KHOA VÀ THANH LÝ</h2>
+
+    <!-- #region Phieu Nhập về khoa -->
+    <a style="float:left" class="total">Phiếu Nhập Về Khoa</a>
+    <div id="father">
+        <table class="table">
+            <tr>
+                <th>
+                    Mã PN
+                </th>
+                <th>
+                    Ngày Nhập
+                </th>
+                <th>
+                    Nội Dung
+                </th>
+                <th>
+                    Người Duyệt
+                </th>
+            </tr>
+
+            @foreach (var item in lstPN_K)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MAPN_KHOA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NGAYNHAP)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NOIDUNG)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NGUOIKIEMDUYET)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+    <br />
+    <h3 class="total">
+        Tổng số phiếu nhập khoa: @ViewBag.total_PhieuNhap_Khoa
+    </h3>
+    <br />
+
+    <!-- #endregion Phieu Nhập về khoa -->
+    <!-- #region Phieu Nhập về khoa -->
+    <a style="float:left" class="total">Phiếu Thanh Lý</a>
+    <div id="father">
+        <table class="table">
+            <tr>
+                <th>
+                    Mã TL
+                </th>
+                <th>
+                    Ngày Thanh Lý
+                </th>
+                <th>
+                    Nội Dung
+                </th>
+                <th>
+                    Người Duyệt
+                </th>
+            </tr>
+
+            @foreach (var item in lstTL)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MATL)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NGAYTL)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NOIDUNG)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NGUOIDUYET)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+    <br />
+    <h3 class="total">
+        Tổng số phiếu thanh lý: @ViewBag.total_ThanhLy
+    </h3>
+    <br />
+
+    <!-- #endregion Phieu Nhập về khoa -->
+
+    <a style="font-size: 15px; float: left;" href="~/Admin/ThongKe/ThongKe">
+        Về Trang Chủ
+    </a>
+</div>
+

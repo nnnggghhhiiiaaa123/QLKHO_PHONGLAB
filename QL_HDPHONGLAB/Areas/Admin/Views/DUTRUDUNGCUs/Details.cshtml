@@ -1,0 +1,51 @@
+﻿@model QL_HDPHONGLAB.Models.DUTRUDUNGCU
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DUTRUDUNGCU</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TENDC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENDC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DACTA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DACTA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SOLUONG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SOLUONG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DUNGCU.TENDC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DUNGCU.TENDC)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MADC }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

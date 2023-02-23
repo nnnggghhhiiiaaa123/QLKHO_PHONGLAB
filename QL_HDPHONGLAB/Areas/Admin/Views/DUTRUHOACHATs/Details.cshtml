@@ -1,0 +1,51 @@
+﻿@model QL_HDPHONGLAB.Models.DUTRUHOACHAT
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DUTRUHOACHAT</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TENHC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENHC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DACTA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DACTA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SOLUONG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SOLUONG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HOACHAT.TENHC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HOACHAT.TENHC)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MAHC }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

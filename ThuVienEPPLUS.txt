@@ -1,0 +1,3 @@
+Hướng dẫn tải thư viện EPPLUS cho Visual Studio tiện cho việc xuất file Excel:
+B1: Vào mục Tools -> NuGet Package Manager -> Manage NuGet Packages for Solution...
+B2: Vào mục Browse tìm từ khoá Epplus rồi download về chương trình đang sử dụng

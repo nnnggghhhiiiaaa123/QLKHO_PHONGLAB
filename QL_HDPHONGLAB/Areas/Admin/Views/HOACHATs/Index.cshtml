@@ -1,0 +1,439 @@
+﻿@model PagedList.IPagedList<QL_HDPHONGLAB.Models.HOACHAT>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+<link rel="stylesheet" href="~/Areas/Admin/Content/vendor/iconfonts/mdi/css/materialdesignicons.min.css">
+
+@{ 
+    ViewBag.Title = "Hóa Chất - TTTNTH"; 
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; 
+}
+
+<style type="text/css">
+
+    #father {
+        width: 100%;
+        overflow: auto;
+    }
+
+    table, th, td {
+        border: 1px solid #868585;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+        table tr:nth-child(odd) {
+            background-color: beige;
+        }
+
+        table tr:nth-child(even) {
+            background-color: blanchedalmond;
+        }
+
+        table tr:nth-child(1) {
+            background-color: aquamarine;
+        }
+
+    .button:hover {
+        background-color: chartreuse;
+    }
+
+    .button-main {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .button-dutru {
+        align-items: flex-start;
+        float: left;
+    }
+
+    .body-content {
+        margin: 0 auto;
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    h3.total{
+        text-align:center;
+    }
+    .dropdown-divider .nav .nav-item .nav-link {
+        display: inline-block;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        margin-left: auto;
+        margin-right: 0;
+        color: #939393;
+    }
+
+    .rtl .dropdown-divider .nav .nav-item .nav-link {
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    .dropdown-divider .nav .nav-item .nav-link[aria-expanded="true"]:before {
+        -moz-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+
+    .dropdown-divider .nav .nav-item.active > .nav-link .menu-title,
+    .dropdown-divider .nav .nav-item.active > .nav-link {
+        color: #fff;
+    }
+
+    .dropdown-divider-mini .dropdown-divider .nav .nav-item .nav-link {
+        display: inline-block;
+        margin-left: 5px;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        -moz-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+</style>
+
+<div class="body-content">
+    <br />
+    <h2>DANH SÁCH HÓA CHẤT TRUNG TÂM THÍ NGHIỆM THỰC HÀNH</h2>
+
+    <div class="text-right" style="overflow: hidden; padding: 1px 0px 0px 0px; margin-top: -47px; margin-bottom: 10px;">
+        <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("ExportToExcel", "HOACHATs")'"><i class="menu-icon mdi mdi-printer"></i></button>
+    </div>
+
+    <div class="button-main" style="display:flex; justify-content: space-around;">
+        <div class="button-dutru">
+            <p class="btn btn-outline-danger btn-sm">@Html.ActionLink("Dự Trù", "Index", "DUTRUHOACHATs")</p>
+        </div>
+
+        <div class="nhaphang">
+            <p class="btn btn-outline-danger" style="text-decoration: none;">
+                @Html.ActionLink("Nhập Hàng", "NhapKho", "Kho")
+            </p>
+        </div>
+        <div class="button-search">
+            @using (Html.BeginForm())
+            {
+                <p>
+                    Tìm kiếm: @Html.TextBox("SearchString")
+                    <input class="button" placeholder="Nhập tên..." type="submit" value="Tìm" />
+                </p>
+            }
+        </div>
+        <div class="xuathang">
+            <p class="btn btn-outline-danger" style="text-decoration: none;">
+                @Html.ActionLink("Xuất Hàng", "ThemPhieuXuat", "PhieuXuat")
+            </p>
+        </div>
+        <div class="button-create">
+            <p class="btn btn-outline-danger btn-sm">
+                @Html.ActionLink("Tạo Mới", "Create")
+            </p>
+        </div>
+    </div>
+
+
+    <div id="father">
+        <table class="table">
+            <tr>
+                <th>
+                    STT
+                </th>
+                <th>
+                    @Html.ActionLink("Mã HC", "Index", new { sortOrder = ViewBag.MaSortParm })
+                </th>
+                <th>
+                    @Html.ActionLink("Tên HC", "Index", new { sortOrder = ViewBag.TenSortParm })
+                </th>
+                <th>
+                    Thông Số
+                    @*@Html.DisplayNameFor(model => model.THONGSO)*@
+                </th>
+                <th>
+                    Số Cas
+                    @*@Html.DisplayNameFor(model => model.CASNO)*@
+                </th>
+                <th>
+                    Đơn Vị
+                    @*@Html.DisplayNameFor(model => model.DONVI)*@
+                </th>
+
+                <th>
+                    Lượng Tồn
+                    @*@Html.DisplayNameFor(model => model.LUONGTON)*@
+                </th>
+                <th>
+                    Lượng Thanh Lý
+                    @*@Html.DisplayNameFor(model => model.LUONGTON)*@
+                </th>
+                <th>
+                    Hình Ảnh
+                </th>
+                <th>
+                    Các hành động
+                </th>
+            </tr>
+
+            @{ var a = 1;}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@(a++)</td>
+                    <td class="dropdown-divider">
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="collapse" href="#chitiet" aria-expanded="false">
+                                    @*<i class="typcn typcn-chevron-left menu-arrow"></i>*@
+                                    <span class="menu-title">@Html.DisplayFor(modelItem => item.MAHC)</span>
+                                </a>
+                                <div class="nav">
+                                    <div class="nav-item">
+                                        <div class="collapse" id="chitiet">
+                                            <h4>CHI TIẾT HÓA CHẤT</h4>
+                                            <table class="nav flex-column sub-menu">
+
+                                                <tr>
+                                                    <th>
+                                                        Mã Hoá Chất
+                                                    </th>
+                                                    <th>
+                                                        Tên Hoá Chất
+                                                    </th>
+                                                    @*<th>
+                                                        Lượng Nhập
+                                                    </th>
+                                                    <th>
+                                                        Lượng Xuất
+                                                    </th>*@
+                                                    <th>
+                                                        Lượng Tồn
+                                                    </th>
+                                                    <th>
+                                                        Lượng Thanh Lý
+                                                    </th>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.MAHC)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.TENHC)
+                                                    </td>
+                                                    @*<td>
+                                                        @Html.DisplayFor(modelItem => item.LUONGNHAP)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.LUONGXUAT)
+                                                    </td>*@
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.LUONGTON)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.LUONGTHANHLY)
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TENHC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.THONGSO)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CASNO)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DONVI)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LUONGTON)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LUONGTHANHLY)
+                    </td>
+                    <td>
+                        <img src="~/images/hoachat/@item.HINHANH" style="width:50px; height:50px;"/>
+                        @*@Html.DisplayFor(modelItem => item.HINHANH)*@
+                    </td>
+                    <td>
+                        @*<p class="btn btn-outline-info btn-sm"><i class="menu-icon mdi mdi-pencil"></i>@Html.ActionLink("Sửa", "Edit", new { id = item.MAHC })</p>*@
+                        @*@Html.ActionLink("Details", "Details", new { id = item.MAHC })*@
+                        @*<p class="btn btn-outline-danger btn-sm"><i class="menu-icon mdi mdi-delete"></i>@Html.ActionLink("Xóa", "Delete", new { id = item.MAHC })</p>*@
+                        <a href="/Admin/HOACHATs/Edit?id=@item.MAHC" style="text-decoration: none"><i class="menu-icon mdi mdi-pencil"></i></a>
+                        <a href="/Admin/HOACHATs/XemChiTiet?mahc=@item.MAHC" style="text-decoration: none"><i class="menu-icon mdi mdi-content-copy"></i></a>
+                        <a href="/Admin/HOACHATs/XoaHoaChat?mahc=@item.MAHC" style="text-decoration: none"><i class="menu-icon mdi mdi-delete"></i></a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <br />
+        <h3 class="total">Tổng số lượng tồn: @ViewBag.total</h3>
+    </div>
+    <br />
+    @using (Html.BeginForm("DanhSach", "HOACHATs"))
+    {
+        @Html.AntiForgeryToken()
+        <!-- #region Phần Hoá Chất Nhập -->
+        <table class="table ChiTietHoaChat">
+            <tr class="trAppend" style="display:none">
+                <td>
+                    <select class="ddlHoaChat form-select" name="">
+                        @foreach (var item in Model)
+                        {
+                            <option value="@item.MAHC">@item.TENHC</option>
+                        }
+                    </select>
+                </td>
+                <td>
+                    <input name="" class="txtSoLuongTon form-control">
+                </td>
+                <td>
+                    <input name="" class="txtSoLuongTL form-control">
+                </td>
+                <td>
+                    <input class="btnXoa" style="width:30px;height:30px" value="xóa">
+                </td>
+            </tr>
+            <tr class="trFirstChild" data-id="-1">
+                <td>Hoá Chất</td>
+                <td>Lượng Tồn</td>
+                <td>Lượng Thanh Lý</td>
+                <td></td>
+            </tr>
+        </table>
+        <input type="button" value="+" class="btn btn-success" id="btnThemHoaChat">
+        <input type="submit" value="Thanh Lý" class="btn btn-primary" id="btnThemMoiHoaChat">
+        <!-- #endregion -->
+    }
+    <br />
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) - @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>
+
+<script type="text/javascript">
+    function TinhToan() {
+        var gam = document.getElementById("gam").value;
+        var a = 0.001
+        var kq = parseFloat(a) * parseFloat(gam)
+        if (!isNaN(kq)) {
+            document.getElementById("kg").value = kq;
+        }
+    }
+    // Phần appen
+    $("#btnThemHoaChat").click(function () {
+        // lấy id của tr cuối cùng thuộc thẻ table có class = ChiTietphieuNhap
+        // Bước 4: Phương thức find là tìm đến thẻ nào đó: ở đây là thẻ tr (:last-child) là thẻ cuối cùng trong thẻ tblChiTietPhieuNhap
+        var id_cuoi = $(".ChiTietHoaChat").find("tr:last-child").attr("data-id");
+        i = parseInt(id_cuoi) + 1;
+        // Bước 1:Nội dung phía trong thẻ trAppend
+        var tdnoidung = $(".trAppend").html();
+        // Bước 2: Tạo 1 thẻ tr bao ngoài nội dung
+        var trnoidung = "<tr class=\"trAppended\" data-id=\"" + i + "\">" + tdnoidung + "</tr>";
+        // Bước 3: Lấy thẻ table append vào 1 tr
+        $(".ChiTietHoaChat").append(trnoidung);
+        loadIDHoaChat();
+    });
+
+    // Phương thức sử lý lấy thuộc tính attr từ thẻ tr gắn xuống chỉ xố phần tử các trong thuộc tính name của thẻ input
+    function loadIDHoaChat() {
+        $(".trAppended").each(function () {
+            var id = $(this).attr("data-id");
+            var nameMaHoaChat = "[" + id + "].MAHC";
+            var nameSoLuongTon = "[" + id + "].SLTON";
+            var nameSoLuongThanhLy = "[" + id + "].SLTHANHLY"
+            $(this).find(".ddlHoaChat").attr("name", nameMaHoaChat);
+            $(this).find(".txtSoLuongTon").attr("name", nameSoLuongTon);
+            $(this).find(".txtSoLuongTL").attr("name", nameSoLuongThanhLy);
+        });
+    }
+    // sử lý sự kiện xóa 1 dòng từ nút delete nằm bên trong thẻ tr
+    $("body").on("click", ".btnXoa", function () {
+        // Xóa phần tử cha phía ngoài
+        $(this).closest(".trAppended").remove();
+        CapNhatID();
+    });
+
+    function CapNhatID() {
+        //Lấy lại tr 1
+        var id_cuoi = $(".ChiTietHoaChat").find(".trFirstChild").attr("data-id");
+        i = parseInt(id_cuoi) + 1;
+
+        $(".trAppendSanPham").each(function () {
+            var id = i;
+            $(this).attr("data-id", i)
+            // cập nhật lại id (tr) khi xóa
+            var nameMaHoaChat = "[" + id + "].MAHC";
+            var nameSoLuongTon = "[" + id + "].SLTON";
+            var nameSoLuongThanhLy = "[" + id + "].SLTHANHLY";
+            $(this).find(".ddlHoaChat").attr("name", nameMaHoaChat); // gán name cho dropdowlist
+            $(this).find(".txtSoLuongTon").attr("name", nameSoLuongTon);
+            $(this).find(".txtSoLuongTL").attr("name", nameSoLuongThanhLy);
+            i++;
+        });
+    }
+    $("#btnThemMoiHoaChat").click(function () {
+        if (KiemTraSoLuong() == false) {
+            return false;
+        }
+    })
+    // kiểm tra Số lượng xuất lớn hơn 0 và > 0
+    function KiemTraSoLuong()
+    {
+        var bl = true;
+        // Duyệt vòng lặp each số lượng tồn
+        $(".txtSoLuongTon").each(function () {
+            var giatri = $(this).val();
+            if (parseFloat(giatri) < 0) {
+                alert("Số lượng tồn phải lớn hơn 0");
+                bl = false;
+                return bl;
+            }
+            if (isNaN(giatri) == true) {
+                alert("Số lượng tồn không hợp lệ !");
+                bl = false;
+                return bl;
+            }
+        });
+
+        // Duyệt vòng lặp each số lượng thanh lý
+        $(".txtSoLuongTon").each(function () {
+            var giatri = $(this).val();
+            if (parseFloat(giatri) < 0) {
+                alert("Số lượng thanh lý phải lớn hơn 0");
+                bl = false;
+                return bl;
+            }
+            if (isNaN(giatri) == true) {
+                alert("Số lượng thanh lý không hợp lệ !");
+                bl = false;
+                return bl;
+            }
+        });
+
+        return bl;
+    }
+
+</script>
+
+
+

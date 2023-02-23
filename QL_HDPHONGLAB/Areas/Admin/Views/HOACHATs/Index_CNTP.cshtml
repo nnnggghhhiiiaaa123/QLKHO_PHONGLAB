@@ -1,0 +1,266 @@
+﻿@model PagedList.IPagedList<QL_HDPHONGLAB.Models.HOACHAT_CNTP>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+<link rel="stylesheet" href="~/Areas/Admin/Content/vendor/iconfonts/mdi/css/materialdesignicons.min.css">
+
+@{
+    ViewBag.Title = "Hóa Chất - CNTP";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin2.cshtml";
+}
+
+<style type="text/css">
+
+    #father {
+        width: 100%;
+        overflow: auto;
+    }
+
+    table, th, td {
+        border: 1px solid #868585;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+        table tr:nth-child(odd) {
+            background-color: beige;
+        }
+
+        table tr:nth-child(even) {
+            background-color: blanchedalmond;
+        }
+
+        table tr:nth-child(1) {
+            background-color: aquamarine;
+        }
+
+    .button:hover {
+        background-color: chartreuse;
+    }
+
+    .button-main {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .button-dutru {
+        align-items: flex-start;
+        float: left;
+    }
+
+    .body-content {
+        margin: 0 auto;
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    h3.total {
+        text-align: center;
+    }
+
+    .dropdown-divider .nav .nav-item .nav-link {
+        display: inline-block;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        margin-left: auto;
+        margin-right: 0;
+        color: #939393;
+    }
+
+    .rtl .dropdown-divider .nav .nav-item .nav-link {
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    .dropdown-divider .nav .nav-item .nav-link[aria-expanded="true"]:before {
+        -moz-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+
+    .dropdown-divider .nav .nav-item.active > .nav-link .menu-title,
+    .dropdown-divider .nav .nav-item.active > .nav-link {
+        color: #fff;
+    }
+
+    .dropdown-divider-mini .dropdown-divider .nav .nav-item .nav-link {
+        display: inline-block;
+        margin-left: 5px;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        -moz-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+</style>
+
+<div class="body-content">
+    <br />
+    <h2>DANH SÁCH HÓA CHẤT TT CÔNG NGHIỆP THỰC PHẨM</h2>
+    <div class="button-main">
+        @*<div class="button-dutru">
+            <p class="btn btn-outline-danger btn-sm">@Html.ActionLink("Dự Trù", "Index", "DUTRUHOACHATs")</p>
+        </div>*@
+        <div class="button-search">
+            @using (Html.BeginForm())
+            {
+                <p>
+                    Tìm kiếm: @Html.TextBox("SearchString")
+                    <input class="button" placeholder="Nhập tên..." type="submit" value="Tìm" />
+                </p>
+            }
+        </div>
+        <div class="button-create">
+            <p class="btn btn-outline-danger btn-sm">
+                @Html.ActionLink("Tạo Mới", "Create_CNTP")
+            </p>
+        </div>
+    </div>
+
+
+    <div id="father">
+        <table class="table">
+            <tr>
+                <th>
+                    STT
+                </th>
+                <th>
+                    @Html.ActionLink("Mã HC", "Index_CNTP", new { sortOrder = ViewBag.MaSortParm })
+                </th>
+                <th>
+                    @Html.ActionLink("Tên HC", "Index_CNTP", new { sortOrder = ViewBag.TenSortParm })
+                </th>
+                <th>
+                    Thông Số
+                    @*@Html.DisplayNameFor(model => model.THONGSO)*@
+                </th>
+                <th>
+                    Số Cas
+                    @*@Html.DisplayNameFor(model => model.CASNO)*@
+                </th>
+                <th>
+                    Đơn Vị
+                    @*@Html.DisplayNameFor(model => model.DONVI)*@
+                </th>
+                @*<th>
+                        Lượng Nhập
+                        @Html.DisplayNameFor(model => model.LUONGXUAT)
+                    </th>*@
+
+                <th>
+                    Lượng Tồn
+                    @*@Html.DisplayNameFor(model => model.LUONGTON)*@
+                </th>
+                <th>
+                    Các hành động
+                </th>
+            </tr>
+
+            @{ var a = 1;}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@(a++)</td>
+                    <td class="dropdown-divider">
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="collapse" href="#chitiet" aria-expanded="false">
+                                    @*<i class="typcn typcn-chevron-left menu-arrow"></i>*@
+                                    <span class="menu-title">@Html.DisplayFor(modelItem => item.MAHC_CNTP)</span>
+                                </a>
+                                <div class="nav">
+                                    <div class="nav-item">
+                                        <div class="collapse" id="chitiet">
+                                            <h4>CHI TIẾT HÓA CHẤT</h4>
+                                            <table class="nav flex-column sub-menu">
+
+                                                <tr>
+                                                    <th>
+                                                        Mã Hoá Chất
+                                                    </th>
+                                                    <th>
+                                                        Tên Hoá Chất
+                                                    </th>
+                                                    @*<th>
+                                                            Lượng Nhập
+                                                        </th>*@
+                                                    <th>
+                                                        Lượng Tồn
+                                                    </th>
+                                                    <th>
+                                                        Lượng Thanh Lý
+                                                    </th>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.MAHC_CNTP)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.TENHC_CNTP)
+                                                    </td>
+                                                    @*<td>
+                                                            @Html.DisplayFor(modelItem => item.LUONGNHAP)
+                                                        </td>*@
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.LUONGTON)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.LUONGTHANHLY)
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TENHC_CNTP)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.THONGSO)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CASNO)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DONVI)
+                    </td>
+
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.LUONGNHAP)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LUONGTON)
+                    </td>
+                    <td>
+                        <a href="/Admin/HOACHATs/Edit_CNTP?id=@item.MAHC_CNTP" style="text-decoration: none"><i class="menu-icon mdi mdi-pencil"></i></a>
+                        <a href="/Admin/HOACHATs/XemChiTiet_CNTP?mahc_cntp=@item.MAHC_CNTP" style="text-decoration: none"><i class="menu-icon mdi mdi-content-copy"></i></a>
+                        <a href="/Admin/HOACHATs/XoaHoaChat_CNTP?mahc_cntp=@item.MAHC_CNTP" style="text-decoration: none"><i class="menu-icon mdi mdi-delete"></i></a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <br />
+        <h3 class="total">Tổng số lượng tồn: @ViewBag.total</h3>
+    </div>
+    <br />
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) của @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index_CNTP",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>
+

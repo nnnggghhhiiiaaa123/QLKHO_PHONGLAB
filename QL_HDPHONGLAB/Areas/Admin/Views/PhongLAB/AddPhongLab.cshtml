@@ -1,0 +1,156 @@
+﻿@model IEnumerable<QL_HDPHONGLAB.Models.PHONGLAB>
+@{
+    ViewBag.Title = "Phòng LAB";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<link rel="stylesheet" href="~/Areas/Admin/Content/vendor/iconfonts/mdi/css/materialdesignicons.min.css">
+
+<style type="text/css">
+    table, th, td {
+        border: 1px solid #868585;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+        table tr:nth-child(odd) {
+            background-color: #eee;
+        }
+
+        table tr:nth-child(even) {
+            background-color: white;
+        }
+
+        table tr:nth-child(1) {
+            background-color: skyblue;
+        }
+
+    .body-content {
+        margin: 0 auto;
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+        height: 100%;
+        background-image: url('../../../../Assets/images/bg_sky.jpg');
+    }
+</style>
+<!-- partial -->
+<div class="body-content">
+    <div class="content-wrapper">
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#add").click(function () {
+                    var id = $("#lab_id").val();
+
+                    var lab_name = $("#lab_name").val();
+                    var sophong = $("#sophong").val();
+                    var succhua = $("#succhua").val();
+                    var diadiem = $("#diadiem").val();
+                    var ghichu = $("#ghichu").val();
+
+                    var data = "lab_name=" + lab_name + "&sophong=" + sophong + "&succhua=" + succhua + "&diadiem=" + diadiem + "&ghichu=" + ghichu;
+                    $.ajax({
+                        async: true,
+                        type: "POST",
+                        url: "Insert_LAB",                        
+                        data: data,
+
+                        success: function ($show_insert_data) {
+                            $("#retrieve_data").html($show_insert_data);
+                        }
+                    });
+                });
+            });
+        </script>
+        <h2>Phòng LAB</h2>
+
+
+        @ViewBag.status
+        @ViewData["status"]
+        @ViewData["fail_status"]
+        @ViewBag.delete_status
+
+        <center><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Thêm Phòng</button></center>
+        <br />
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" style="">Thêm Phòng LAB</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" id="registration">
+                            <table class="table">
+                                <input type="number" style="display:none" name="lab_id" id="lab_id" value="2" class="form-control" placeholder="Mã Phòng" />
+                                <tr>
+                                    <td>Số Phòng</td>
+                                    <td><input type="text" name="sophong" style="border-bottom:2px solid #0094ff" id="sophong" class="form-control" placeholder="Số Phòng" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Sức Chứa</td>
+                                    <td><input type="number" name="succhua" style="border-bottom:2px solid #0094ff" id="succhua" class="form-control" placeholder="Sức Chứa" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Địa Điểm</td>
+                                    <td><input type="text" name="diadiem" style="border-bottom:2px solid #0094ff" id="diadiem" class="form-control" placeholder="Địa Điểm" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Ghi Chú</td>
+                                    <td><input type="text" name="ghichu" style="border-bottom:2px solid #0094ff" id="ghichu" class="form-control" placeholder="Ghi Chú" /></td>
+                                </tr>
+                                <tr>
+
+                                    <td><input type="button" name="submit" @*onclick="save()"*@ id="add" class="btn btn-primary" value="Lưu" /></td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <!--Show dữ liệu-->
+        <div id="retrieve_data">
+            <table class="table">
+                <tr>
+                    <th>Mã Phòng</th>
+                    <th>Số Phòng</th>
+                    <th>Sức Chứa</th>
+                    <th>Địa Điểm</th>
+                    <th>Ghi CHú</th>
+                    <th>Action</th>
+                </tr>
+                @{ var a = 1;}
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@(a++)</td>
+                        <td>@item.SOPHONG</td>
+                        <td>@item.SUCCHUA</td>
+                        <td>@item.DIADIEM</td>
+                        <td>@item.GHICHU</td>
+                        <td>
+                            <a href="/Admin/PhongLAB/Xoa_PhongLAB?maphlab=@item.MAPHLAB" tooltip="Edit"><i class="menu-icon mdi mdi-pencil"></i></a>
+                            <a href="/Admin/PhongLAB/Delete_PHONGLAB?id=@item.MAPHLAB" style="text-decoration: none"><i class="menu-icon mdi mdi-delete"></i></a>
+                        </td>
+                    </tr>
+                }
+            </table>
+
+        </div>
+    </div>
+    <!-- partial -->
+</div>
+<!-- main-panel ends -->
+<script src="~/vendors/js/vendor.bundle.addons.js"></script>
+<script src="~/vendors/js/vendor.bundle.base.js"></script>

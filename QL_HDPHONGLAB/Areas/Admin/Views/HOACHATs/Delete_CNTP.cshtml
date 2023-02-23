@@ -1,0 +1,94 @@
+﻿@model QL_HDPHONGLAB.Models.HOACHAT_CNTP
+
+@{
+    ViewBag.Title = "Delete_CNTP - Hóa Chất";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin2.cshtml";
+}
+
+<style>
+    .body-content {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ff0000;
+        text-align: justify;
+    }
+</style>
+
+<h2>Xóa Hóa Chất</h2>
+
+<h3>Bạn có chắc chắn với sự lựa chọn này?</h3>
+
+<div class="body-content">
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Tên Hóa Chất:
+                @*@Html.DisplayNameFor(model => model.TENHC)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TENHC_CNTP)
+            </dd>
+
+            <dt>
+                Thông Số:
+                @*@Html.DisplayNameFor(model => model.THONGSO)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.THONGSO)
+            </dd>
+
+            <dt>
+                Số Cas:
+                @*@Html.DisplayNameFor(model => model.CASNO)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CASNO)
+            </dd>
+
+            <dt>
+                Đơn Vị:
+                @*@Html.DisplayNameFor(model => model.DONVI)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DONVI)
+            </dd>
+
+            @*<dt>
+                Lượng Nhập;
+                @Html.DisplayNameFor(model => model.LUONGXUAT)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LUONGXUAT)
+            </dd>*@
+
+            <dt>
+                Lượng Tồn:
+                @*@Html.DisplayNameFor(model => model.LUONGTON)*@
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LUONGTON)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input class="btn btn-outline-danger btn-sm" type="submit" value="Xóa" />
+            </div>
+        }
+    </div>
+</div>

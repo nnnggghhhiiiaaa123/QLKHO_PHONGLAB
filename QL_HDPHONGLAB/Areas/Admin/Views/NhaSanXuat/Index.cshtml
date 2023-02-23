@@ -1,0 +1,93 @@
+﻿@model IEnumerable<QL_HDPHONGLAB.Models.NSX>
+<link rel="stylesheet" href="~/Areas/Admin/Content/vendor/iconfonts/mdi/css/materialdesignicons.min.css">
+
+@{
+    ViewBag.Title = "Nhà Sản Xuất";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style type="text/css">
+
+    table, th, td {
+        border: 1px solid #868585;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+        table tr:nth-child(odd) {
+            background-color: #eee;
+        }
+
+        table tr:nth-child(even) {
+            background-color: white;
+        }
+
+        table tr:nth-child(1) {
+            background-color: skyblue;
+        }
+
+    .body-content {
+        margin: 0 auto;
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+    }
+</style>
+
+<div class="body-content">
+    <h2>DANH SÁCH NHÀ SẢN XUẤT</h2>
+
+    <p class="btn btn-outline-danger btn-sm">
+        @Html.ActionLink("Tạo Mới", "Create")
+    </p>
+    <table class="table">
+        <tr id="table_header">
+            <!--<th>
+                Mã NSX-->
+            @*@Html.DisplayNameFor(model => model.MANSX)*@
+            <!--</th>-->
+            <th>
+                Tên NSX
+                @*@Html.DisplayNameFor(model => model.TENNSX)*@
+            </th>
+            <th>
+                Điện Thoại
+                @*@Html.DisplayNameFor(model => model.SDT)*@
+            </th>
+            <th>
+                Địa Chỉ
+                @*@Html.DisplayNameFor(model => model.DIACHI)*@
+            </th>
+            <th>
+                Các hành động
+                @*@Html.DisplayNameFor(model => model.DIACHI)*@
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr id="table_content">
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.MANSX)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.TENNSX)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SDT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DIACHI)
+                </td>
+                <td>
+                    <p class="btn btn-outline-info btn-sm"><i class="menu-icon mdi mdi-pencil"></i>@Html.ActionLink("Sửa", "Edit", new { id = item.MANSX })</p>
+                    @*@Html.ActionLink("Details", "Details", new { id = item.MAHC })*@
+                    <p class="btn btn-outline-danger btn-sm"><i class="menu-icon mdi mdi-delete"></i>@Html.ActionLink("Xóa", "Delete", new { id = item.MANSX })</p>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

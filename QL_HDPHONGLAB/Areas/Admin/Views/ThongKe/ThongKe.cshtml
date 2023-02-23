@@ -1,0 +1,135 @@
+﻿@using QL_HDPHONGLAB.Models
+@model List<PHIEUNHAP>
+@{
+    ViewBag.Title = "ThongKe";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Thống kê</h2>
+<div class="container">
+    <h2 class="small-title">Phiếu Kiểm Duyệt gần đây</h2>
+    <div class="mb-n2 scroll-out">
+        <div class="os-content" style="padding: 0px 15px; height: 100%; width: 100%;">
+            <!-- #region Phiếu Nhập Gần Đây -->
+            <h3 class="text-primary cta-4">
+                @foreach (var item in Model)
+                {
+                    @item.MAPN
+                }
+            </h3>
+            @*<h3 class="text-primary cta-4">@ViewBag.KiemDuyet</h3>*@
+            <!-- #endregion -->
+            <br />
+        </div>
+    </div>
+    <!-- #region Thống kê theo tuần -->
+    <h2 class="small-title">
+        Thống Kê Phiếu Kiểm Duyệt Theo Tuần
+    </h2>
+    @using (Html.BeginForm("ThongKeTuan", "ThongKe"))
+    {
+        <div class="card mb-5">
+            <div class="card-body">
+                <div class="row g-3" style="display:none">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Thống Kê</label>
+                        <select class="form-select">
+                            <option>Doanh Thu Hôm Nay</option>
+                            <option>Doanh Thu Hôm Nay</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3" style="display:none">
+                        <label class="form-label">Last Name</label>
+                        <input class="form-control" name="addressLastName">
+                    </div>
+                </div>
+                <div class="row g-3">
+                    <div class="col-md-4 mb-3">
+                        <div class="w-100">
+                            <label class="form-label">Ngày Bắt Đầu</label>
+                            <select class="form-select" name="NgayBatDau">
+                                @for (int i = 1; i <= 30; i++)
+                                {
+                                    <option value="@i">@i</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="w-100">
+                            <label class="form-label">Ngày Kết Thúc</label>
+                            <select class="form-select" name="NgayKetThuc">
+                                @for (int i = 1; i <= 30; i++)
+                                {
+                                    <option value="@i">@i</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="w-100">
+                            <label class="form-label">Tháng</label>
+                            <select class="form-select" name="Thang">
+                                @for (int i = 1; i <= 12; i++)
+                                {
+                                    <option value="@i">@i</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Thống kê</button>
+            </div>
+        </div>}
+    <!-- #endregion -->
+
+    <h2 class="small-title">
+        Thống Kê Phiếu Kiểm Duyệt Theo Quý
+    </h2>
+    @using (Html.BeginForm("ThongKeQuy", "ThongKe"))
+    {
+        <div class="card mb-5">
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-4 mb-3">
+                        <div class="w-100">
+                            <label class="form-label">Tháng Bắt Đầu</label>
+                            <select class="form-select" name="ThangBatDau">
+                                @for (int i = 1; i <= 12; i++)
+                                {
+                                    <option value="@i">@i</option>
+                                }
+                            </select>
+                            <label class="form-label">Của Năm</label>
+                            <select class="form-select" name="NamBatDau">
+                                @for (int i = 2019; i <= 2025; i++)
+                                {
+                                    <option value="@i">@i</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="w-100">
+                            <label class="form-label">Tháng Kết Thúc</label>
+                            <select class="form-select" name="ThangKetThuc">
+                                @for (int i = 1; i <= 12; i++)
+                                {
+                                    <option value="@i">@i</option>
+                                }
+                            </select>
+                            <label class="form-label">Của Năm</label>
+                            <select class="form-select" name="NamKetThuc">
+                                @for (int i = 2019; i <= 2025; i++)
+                                {
+                                    <option value="@i">@i</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Thống kê</button>
+            </div>
+        </div>
+        }
+</div>

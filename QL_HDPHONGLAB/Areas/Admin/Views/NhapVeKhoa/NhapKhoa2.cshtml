@@ -1,0 +1,131 @@
+﻿@using QL_HDPHONGLAB.Models
+@{
+    ViewBag.Title = "Nhập thiết bị về khoa";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin2.cshtml";
+}
+
+@{
+    IEnumerable<THIETBI_CNTP> lstThietBi_CNTP = ViewBag.ThietBi_CNTP as IEnumerable<THIETBI_CNTP>;
+}
+
+<script src="~/Assets/js/Ajax/jquery-1.8.0.min.js"></script>
+@*<script src="~/Scripts/jquery-1.12.4.min.js"></script>*@
+<div class="container">
+    <div class="page-title-container">
+        <div class="row">
+            <div class="col-12 col-md-7">
+                <h1 class="mb-0 pb-0 display-4" id="title">Nhập thiết bị về khoa</h1>
+            </div>
+        </div>
+    </div>
+    @using (Html.BeginForm("NhapKhoa2", "NhapVeKhoa"))
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col-6 col-lg order-1 order-lg-0">
+                <h2 class="small-title">Thông Tin Phiếu Nhập</h2>
+                <div id="addressForm" class="tooltip-label-end" novalidate="">
+                    <div class="card mb-5">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <label class="form-label">Ngày Nhập</label>
+                                    <input type="date" class="form-control mask-currency" name="NGAYNHAP">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label class="form-label">Nội Dung Nhập</label>
+                                    <input type="text" class="form-control mask-currency" name="NOIDUNG">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- #region Phần Hoá Chất Nhập -->
+                <!--Hoá Chất-->
+                <table class="table ChiTietPhieuNhap">
+                    <tr class="trAppend" style="display:none">
+                        <td>
+                            <select class="ddlThietBi form-select" name="" style="width: 200px; height:50px">
+                                @foreach (var item in lstThietBi_CNTP)
+                                {
+                                    <option value="@item.MATB">@item.TENTB</option>
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" name="" class="txtSoLuongNhap form-control" style="text-align:center;">
+                        </td>
+                        <td>
+                            <input class="btnDelete" style="width:50px; height:50px; text-align: center; background-color: aquamarine;" value="Xóa">
+                        </td>
+                    </tr>
+                    <tr class="trFirstChild" data-id="-1">
+                        <td>Thiết Bị</td>
+                        <td>Số Lượng Nhập</td>
+                        <td></td>
+                    </tr>
+                </table>
+                <input type="button" value="Thêm Thiết Bị" class="btn btn-success" id="btnAddTB">
+                <input type="submit" value="Nhập Về Khoa" class="btn btn-primary" id="btnNhapHang">
+                <!-- #endregion -->
+
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    // Thiết Bị
+    // Phần appen
+    $("#btnAddTB").click(function () {
+        // lấy id của tr cuối cùng thuộc thẻ table có class = ChiTietphieuNhap
+        // Bước 4: Phương thức find là tìm đến thẻ nào đó: ở đây là thẻ tr (:last-child) là thẻ cuối cùng trong thẻ tblChiTietPhieuNhap
+        var id_cuoi = $(".ChiTietPhieuNhap").find("tr:last-child").attr("data-id");
+        i = parseInt(id_cuoi) + 1;
+        // Bước 1:Nội dung phía trong thẻ trAppend
+        var tdnoidung = $(".trAppend").html();
+        // Bước 2: Tạo 1 thẻ tr bao ngoài nội dung
+        var trnoidung = "<tr class=\"trAppended\" data-id=\"" + i + "\">" + tdnoidung + "</tr>";
+        // Bước 3: Lấy thẻ table append vào 1 tr
+        $(".ChiTietPhieuNhap").append(trnoidung);
+        loadIDLENTHE();
+    });
+
+    // Phương thức sử lý lấy thuộc tính attr từ thẻ tr gắn xuống chỉ xố phần tử các trong thuộc tính name của thẻ input
+    function loadIDLENTHE() {
+        $(".trAppended").each(function () {
+            var id = $(this).attr("data-id");
+            //var nameMaPhieuNhap = "[" + id + "].MaSach";
+            var nameMaThietBi = "[" + id + "].MATB"; // tạo ra mã thiết bị
+            var nameSoLuongNhap = "[" + id + "].SOLUONGNHAP"; // tạo ra số lượng nhập
+            $(this).find(".ddlThietBi").attr("name", nameMaThietBi); // gán name cho dropdowlist
+            $(this).find(".txtSoLuongNhap").attr("name", nameSoLuongNhap); // gan so luong nhap sach
+        });
+    }
+
+    // sử lý sự kiện xóa 1 dòng từ nút delete nằm bên trong thẻ tr
+    $("body").on("click", ".btnDelete", function () {
+        // Xóa phần tử cha phía ngoài
+        $(this).closest(".trAppended").remove();
+        CapNhatID();
+    });
+
+    function CapNhatID() {
+        //Lấy lại tr 1
+        var id_cuoi = $(".ChiTietPhieuNhap").find(".trFirstChild").attr("data-id");
+        i = parseInt(id_cuoi) + 1;
+
+        $(".trAppended").each(function () {
+            var id = i;
+            $(this).attr("data-id", i)
+            // cập nhật lại id (tr) khi xóa
+            var nameMaThietBi = "[" + id + "].MATB"; // tạo ra mã sp
+            var nameSoLuongNhap = "[" + id + "].SOLUONGNHAP"; // tạo ra số lượng nhập
+            $(this).find(".ddlThietBi").attr("name", nameMaThietBi); // gán name cho dropdowlist
+            $(this).find(".txtSoLuongNhap").attr("name", nameSoLuongNhap); // gan so luong nhap sach
+            i++;
+        });
+    }
+</script>

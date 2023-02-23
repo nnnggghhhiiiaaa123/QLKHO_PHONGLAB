@@ -1,0 +1,383 @@
+﻿@*Layout Admin TT KHOA CNTP*@
+<!DOCTYPE html>
+<html lang="en" style="height:100%">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>HOẠT ĐỘNG KHO PHÒNG LAB</title>
+    <!-- base:css -->
+    <link rel="stylesheet" href="~/Assets/vendors/typicons.font/font/typicons.css">
+    <link rel="stylesheet" href="~/Assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="~/Assets/css/vertical-layout-light/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="~/Assets/images/favicon.png" />
+    <style>
+        .main-panel {
+            display: table-row;
+            height: 100%;
+            background-image: url('../../../../Assets/images/bg_sky.jpg');
+            /*background: #bdc3c7;*/
+            text-align: center;
+        }
+
+        .footer {
+            background-image: url('../../../../Assets/images/bg_sky.jpg');
+            /*background: #bdc3c7;*/
+            text-align: center;
+            color: #fff;
+            padding: 1rem;
+            width: 100%;
+        }
+        }
+    </style>
+    @RenderSection("head", required: false)
+</head>
+<body>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                <a class="navbar-brand brand-logo" href="@Url.Action("Trangchu2", "TrangChu")"><img src="~/Assets/images/logo_hufi_name.png" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="@Url.Action("Trangchu2", "TrangChu")"><img src="~/Assets/images/hufi_logo.svg" alt="logo" /></a>
+                <button class="navbar-toggler navbar-toggler align-self-center d-none d-lg-flex" type="button" data-toggle="minimize">
+                    <span class="typcn typcn-th-menu"></span>
+                </button>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                <ul class="navbar-nav mr-lg-2">
+                    <li class="nav-item  d-none d-lg-flex">
+                        <a class="nav-link active" href="@Url.Action("Trangchu", "TrangChu")">
+                            TT Thí Nghiệm Thực Hành
+                        </a>
+                    </li>
+                    <li class="nav-item  d-none d-lg-flex">
+                        <a class="nav-link active" href="@Url.Action("Trangchu2", "TrangChu")">
+                            TT Công Nghiệp Thực Phẩm
+                        </a>
+                    </li>
+
+                </ul>
+                <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item d-none d-lg-flex  mr-2">
+                        <a class="nav-link" href="#">
+                            Help
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown d-flex">
+                        <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">
+                            <i class="typcn typcn-message-typing"></i>
+                            <span class="count bg-success">2</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
+                            <p class="mb-0 font-weight-normal float-left dropdown-header">Tin Nhắn</p>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <img src="~/Assets/images/faces/face33.png" alt="image" class="profile-pic">
+                                </div>
+                                <div class="preview-item-content flex-grow">
+                                    <h6 class="preview-subject ellipsis font-weight-normal">
+                                        Đăng Khoa
+                                    </h6>
+                                    <p class="font-weight-light small-text mb-0">
+                                        Cuộc hộp đã bị hủy
+                                    </p>
+                                </div>
+                            </a>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <img src="~/Assets/images/faces/face29.png" alt="image" class="profile-pic">
+                                </div>
+                                <div class="preview-item-content flex-grow">
+                                    <h6 class="preview-subject ellipsis font-weight-normal">
+                                        Trọng Nghĩa
+                                    </h6>
+                                    <p class="font-weight-light small-text mb-0">
+                                        Vậy mai họp thì sao?
+                                    </p>
+                                </div>
+                            </a>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <img src="~/Assets/images/faces/face3.jpg" alt="image" class="profile-pic">
+                                </div>
+                                <div class="preview-item-content flex-grow">
+                                    <h6 class="preview-subject ellipsis font-weight-normal">
+                                        Minh Trí
+                                    </h6>
+                                    <p class="font-weight-light small-text mb-0">
+                                        Mai tầm mấy giờ?
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown  d-flex">
+                        <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center" id="notificationDropdown" href="#" data-toggle="dropdown">
+                            <i class="typcn typcn-bell mr-0"></i>
+                            <span class="count bg-danger">2</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                            <p class="mb-0 font-weight-normal float-left dropdown-header">Thông báo</p>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-success">
+                                        <i class="typcn typcn-info-large mx-0"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <h6 class="preview-subject font-weight-normal">Hệ thống báo lỗi</h6>
+                                    <p class="font-weight-light small-text mb-0">
+                                        Hiện trạng: bây giờ
+                                    </p>
+                                </div>
+                            </a>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-warning">
+                                        <i class="typcn typcn-cog mx-0"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <h6 class="preview-subject font-weight-normal">Cài đặt</h6>
+                                    <p class="font-weight-light small-text mb-0">
+                                        Tin nhắn cá nhân
+                                    </p>
+                                </div>
+                            </a>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-info">
+                                        <i class="typcn typcn-user-outline mx-0"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <h6 class="preview-subject font-weight-normal">Người dùng mới</h6>
+                                    <p class="font-weight-light small-text mb-0">
+                                        Đăng ký 2 ngày trước
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item nav-profile dropdown">
+                        <a class="nav-link dropdown-toggle  pl-0 pr-0" href="#" data-toggle="dropdown" id="profileDropdown">
+                            <i class="typcn typcn-user-outline mr-0"></i>
+                            <span class="nav-profile-name">Admin123</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                            <a class="dropdown-item">
+                                <i class="typcn typcn-cog text-primary"></i>
+                                Cài Đặt
+                            </a>
+                            <a class="dropdown-item" href="@Url.Action("Dangnhap", "LoginAdmin")">
+                                <i class="typcn typcn-power text-primary"></i>
+                                Đăng Xuất
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="typcn typcn-th-menu"></span>
+                </button>
+            </div>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_settings-panel.html -->
+            <div class="theme-setting-wrapper">
+                <div id="settings-trigger"><i class="typcn typcn-cog-outline"></i></div>
+                <div id="theme-settings" class="settings-panel">
+                    <i class="settings-close typcn typcn-delete-outline"></i>
+                    <p class="settings-heading">Đổi Màu Menu</p>
+                    <div class="sidebar-bg-options" id="sidebar-light-theme">
+                        <div class="img-ss rounded-circle bg-light border mr-3"></div>
+                        Màu Trắng
+                    </div>
+                    <div class="sidebar-bg-options selected" id="sidebar-dark-theme">
+                        <div class="img-ss rounded-circle bg-dark border mr-3"></div>
+                        Màu Dark
+                    </div>
+                    <p class="settings-heading mt-2">Đổi Màu Header</p>
+                    <div class="color-tiles mx-0 px-4">
+                        <div class="tiles success"></div>
+                        <div class="tiles warning"></div>
+                        <div class="tiles danger"></div>
+                        <div class="tiles primary"></div>
+                        <div class="tiles info"></div>
+                        <div class="tiles dark"></div>
+                        <div class="tiles default border"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- partial -->
+            <!-- partial:partials/_sidebar.html -->
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <div class="d-flex sidebar-profile">
+                            <div class="sidebar-profile-image">
+                                <img src="~/Assets/images/faces/face33.png" alt="image">
+                                <span class="sidebar-status-indicator"></span>
+                            </div>
+                            <div class="sidebar-profile-name">
+                                <p class="sidebar-name">
+                                    Admin
+                                </p>
+                                <p class="sidebar-designation">
+                                    Xin Chào
+                                </p>
+                            </div>
+                        </div>
+                        <div class="nav-search">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Nhập để tìm kiếm..." aria-label="search" aria-describedby="search">
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="search">
+                                        <i class="typcn typcn-zoom"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="sidebar-menu-title">Quản trị</p>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Trangchu", "TrangChu")">
+                            <i class="typcn typcn-device-desktop menu-icon"></i>
+                            <span class="menu-title">Trang Chủ<span class="badge badge-primary ml-3">New</span></span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#nguoidung" aria-expanded="false" aria-controls="auth">
+                            <i class="typcn typcn-user-add-outline menu-icon"></i>
+                            <span class="menu-title">Người dùng</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="nguoidung">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("Dangnhap", "LoginAdmin")"> Đăng nhập </a></li>
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("Register", "LoginAdmin")"> Đăng ký </a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <p class="sidebar-menu-title">Hệ thống</p>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#thietbi" aria-expanded="false" aria-controls="charts">
+                            <i class="typcn typcn-chart-pie-outline menu-icon"></i>
+                            <span class="menu-title">Danh mục trang thiết bị</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="thietbi">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("Index_CNTP", "HOACHATs")">Quản lý hóa chất</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("Index_CNTP", "THIETBIs")">Quản lý thiết bị</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("Index_CNTP", "DUNGCUs")">Quản lý dụng cụ</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#nhapxuatkho" aria-expanded="false" aria-controls="charts">
+                            <i class="typcn typcn-chart-pie-outline menu-icon"></i>
+                            <span class="menu-title">Danh mục nhập về khoa</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="nhapxuatkho">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("NhapKhoa", "NhapVeKhoa")">Quản lý nhập hoá chất</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("NhapKhoa2", "NhapVeKhoa")">Quản lý nhập thiết bị</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("NhapKhoa3", "NhapVeKhoa")">Quản lý nhập dụng cụ</a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#ttb" aria-expanded="false" aria-controls="charts">
+                            <i class="typcn typcn-chart-pie-outline menu-icon"></i>
+                            <span class="menu-title">Phiếu nhập</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="ttb">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("DanhSachPhieuNhapKhoa", "NhapVeKhoa")">Lịch sử nhập</a></li>
+                                
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
+                            <i class="typcn typcn-globe-outline menu-icon"></i>
+                            <span class="menu-title">Báo lỗi</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="error">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("HienThiLoi404", "TrangChu")"> 404 </a></li>
+                                <li class="nav-item"> <a class="nav-link" href="@Url.Action("HienThiLoi500", "TrangChu")"> 500 </a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+
+                </ul>
+                <ul class="sidebar-legend">
+                    <li>
+                        <p class="sidebar-menu-title">Thành Viên</p>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-link">#Đăng Khoa</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">#Trọng Nghĩa</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">#Minh Trí</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">#Khác</a></li>
+                </ul>
+            </nav>
+            <!-- partial -->
+            <div class="main-panel">
+                @RenderBody()
+                <footer class="footer">
+                    <div class="mt-0 p-0 text-white">
+                        <b style="font-size: 23px; color: dodgerblue;">QUẢN LÝ HOẠT ĐỘNG KHO PHÒNG LAB</b>
+                        <p>Địa chỉ: 140 Lê Trọng Tấn, Tây Thạnh, Tân Phú, TP. Hồ Chí Minh </p>
+                        <p>Hotline: 078 933 0047</p>
+                    </div>
+
+                </footer>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- container-scroller -->
+    <!-- base:js -->
+    <script src="~/Assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="~/Assets/js/off-canvas.js"></script>
+    <script src="~/Assets/js/hoverable-collapse.js"></script>
+    <script src="~/Assets/js/template.js"></script>
+    <script src="~/Assets/js/settings.js"></script>
+    <script src="~/Assets/js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- plugin js for this page -->
+    <script src="~/Assets/vendors/progressbar.js/progressbar.min.js"></script>
+    <script src="~/Assets/vendors/chart.js/Chart.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- Custom js for this page-->
+    <script src="~/Assets/js/dashboard.js"></script>
+    <!-- End custom js for this page-->
+
+</body>
+</html>
+
+

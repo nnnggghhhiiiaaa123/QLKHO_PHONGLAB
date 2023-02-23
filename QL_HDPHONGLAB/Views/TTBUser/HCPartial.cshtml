@@ -1,0 +1,31 @@
+﻿@using QL_HDPHONGLAB.Models
+@model List<HOACHAT>
+@{
+    Layout = null;
+}
+
+<h3 style="text-align: center">DANH SÁCH HOÁ CHẤT MƯỢN</h3>
+@{
+    foreach (var item in Model)
+    {
+        <div class="col-3" style="float: left; margin: 15px; margin-left: 50px;">
+
+            <img src="~/images/hoachat/@item.HINHANH" style="width: 100%; height: 100%; text-align: center;">
+            @if (item.TENHC.Length > 30)
+            {
+                <p style="text-align: center;">
+                    <strong title="@item.TENHC">@item.TENHC.Substring(0, 30)...</strong><br />
+                    <a class="btn btn-secondary" href="@Url.Action("DangKyMuonHC", new{@msp =item.MAHC})" style="text-decoration: none">Xem chi tiết</a>
+                </p>
+            }
+            else
+            {
+                <p style="text-align: center;">
+                    <strong title="@item.TENHC">@item.TENHC</strong><br />
+                    <a class="btn btn-secondary" href="@Url.Action("DangKyMuonHC", new{@msp = item.MAHC})" style="text-decoration: none">Xem chi tiết</a>
+                </p>
+            }
+        </div>
+    }
+}
+

@@ -1,0 +1,112 @@
+﻿@model PagedList.IPagedList<QL_HDPHONGLAB.Models.SINHVIEN>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+<link rel="stylesheet" href="~/Areas/Admin/Content/vendor/iconfonts/mdi/css/materialdesignicons.min.css">
+
+@{
+    ViewBag.Title = "Sinh Viên";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style type="text/css">
+
+    table, th, td {
+        border: 1px solid #868585;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+        table tr:nth-child(odd) {
+            background-color: #eee;
+        }
+
+        table tr:nth-child(even) {
+            background-color: white;
+        }
+
+        table tr:nth-child(1) {
+            background-color: skyblue;
+        }
+
+    .body-content {
+        margin: 0 auto;
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+    }
+</style>
+
+<div class="body-content">
+    <h2>DANH SÁCH SINH VIÊN</h2>
+
+    <p class="btn btn-outline-danger btn-sm">
+        @Html.ActionLink("Tạo Mới", "Create")
+    </p>
+
+    @using (Html.BeginForm())
+    {
+        <p>
+            Tìm kiếm: @Html.TextBox("SearchString")
+            <input class="button" placeholder="Nhập tên..." type="submit" value="Tìm" />
+        </p>
+    }
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink("Mã SV", "Index", new { sortOrder = ViewBag.MaSortParm })
+            </th>
+            <th>
+                @Html.ActionLink("Họ Tên", "Index", new { sortOrder = ViewBag.TenSortParm })
+            </th>
+            <th>
+                Ngày Sinh
+            </th>
+            <th>
+                Giới Tính
+            </th>
+            @*<th>
+                Nội Dung
+            </th>*@
+            <th>
+                Các Hành Động
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MASV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TENSV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NGAYSINH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GIOITINH)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.PHIEUXUATPHONGLAB.NOIDUNG)
+                </td>*@
+                <td>
+                    <p class="btn btn-outline-info btn-sm"><i class="menu-icon mdi mdi-pencil"></i>@Html.ActionLink("Sửa", "Edit", new { id = item.MASV })</p>
+                    @*@Html.ActionLink("Details", "Details", new { id = item.MAHC })*@
+                    <p class="btn btn-outline-danger btn-sm"><i class="menu-icon mdi mdi-delete"></i>@Html.ActionLink("Xóa", "Delete", new { id = item.MASV })</p>
+                </td>
+            </tr>
+        }
+
+    </table>
+    <br />
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) của @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>
+

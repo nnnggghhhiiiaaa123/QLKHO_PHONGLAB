@@ -1,0 +1,112 @@
+﻿@model QL_HDPHONGLAB.Models.NGUOIDUNG
+@{
+    Layout = null;
+}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Hệ Thống Đăng Nhập Admin</title>
+    <!-- base:css -->
+    <link rel="stylesheet" href="~/Assets/vendors/typicons.font/font/typicons.css">
+    <link rel="stylesheet" href="~/Assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="~/Assets/css/vertical-layout-light/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="~/Assets/images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="content-wrapper d-flex align-items-center auth px-0">
+                <div class="row w-100 mx-0">
+                    <div class="col-lg-4 mx-auto">
+                        <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                            <center>
+                                <div class="brand-logo">
+                                    <img src="~/Assets/images/hufi_logo.svg" alt="logo">
+                                </div>
+                                <h3>Cùng tham quan trang web nào...</h3>
+                                <h6 class="font-weight-light">Đăng nhập để tiếp tục.</h6>
+                            </center>
+                            @using (Html.BeginForm("Authen", "LoginAdmin", FormMethod.Post))
+                            {
+                                <br />
+                                if (ViewBag.error != null)
+                                {
+                                    <span style="color:red; background-color:yellow; margin-left:50px;">@ViewBag.error</span>
+                                }
+                                <div class="input-field">
+                                    @Html.TextBoxFor(m => m.EMAIL, new { @class = "form-control", @required = "required", @autofocus = "autofocus", @placeholder = "Email" })
+
+                                    <br />
+                                </div>
+                                <div class="input-field">
+                                    @Html.PasswordFor(m => m.PASSWORD, new { @class = "form-control", @required = "required", @placeholder = "Password" })
+
+                                </div>
+                                <br />
+                                <div class="login-btn" style="margin-left:130px">
+                                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Đăng Nhập</button>
+                                </div>
+                            }
+                            <div class="my-2 d-flex justify-content-between align-items-center">
+                                <div class="form-check">
+                                    <label class="form-check-label text-muted">
+                                        <input type="checkbox" class="form-check-input">
+                                        Nhớ mật khẩu
+                                    </label>
+                                </div>
+                                <a href="#" class="auth-link text-black">Quên mật khẩu?</a>
+                            </div>
+                            <div class="mb-2" style="color: white;">
+                                <div class="btn btn-block btn-facebook auth-form-btn">
+                                    <a href="#"><i class="typcn typcn-social-facebook-circular mr-2"></i>Đăng nhập bằng facebook.</a>
+                                    @*@Html.ActionLink("Login with facebook.", "Facebook", "Home")*@
+                                </div>
+                            </div>
+                            @*<div class="mb-2">
+                                    <div class="btn btn-block btn-facebook auth-form-btn">
+                                        <a href="#"><i class="typcn typcn-social-facebook-circular mr-2"></i>Đăng nhập bằng facebook.</a>
+                                    </div>
+                                </div>*@
+                            <div class="text-center mt-4 font-weight-light">
+                                    Chưa có tài khoản? <a href="@Url.Action("Register", "LoginAdmin")" class="text-primary">Tạo tài khoản</a>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- base:js -->
+    <script src="~/Assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="~/Assets/js/off-canvas.js"></script>
+    <script src="~/Assets/js/hoverable-collapse.js"></script>
+    <script src="~/Assets/js/template.js"></script>
+    <script src="~/Assets/js/settings.js"></script>
+    <script src="~/Assets/js/todolist.js"></script>
+    <!-- endinject -->
+</body>
+
+</html>
+
+
+

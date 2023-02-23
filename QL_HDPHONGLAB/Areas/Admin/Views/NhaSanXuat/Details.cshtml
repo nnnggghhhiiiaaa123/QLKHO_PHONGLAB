@@ -1,0 +1,43 @@
+﻿@model QL_HDPHONGLAB.Models.NSX
+
+@{
+    ViewBag.Title = "Details - NSX";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Xem Chi Tiết</h2>
+
+<div>
+    <h4>NSX</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TENNSX)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENNSX)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SDT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DIACHI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DIACHI)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = Model.MANSX }) |
+    @Html.ActionLink("Về trang chủ", "Index")
+</p>

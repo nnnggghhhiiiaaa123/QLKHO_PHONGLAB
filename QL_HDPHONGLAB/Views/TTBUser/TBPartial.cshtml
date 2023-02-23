@@ -1,0 +1,30 @@
+﻿@using QL_HDPHONGLAB.Models
+@model List<THIETBI>
+@{
+    Layout = null;
+}
+
+<h3 style="text-align: center">DANH SÁCH THIẾT BỊ MƯỢN</h3>
+@{
+    foreach (var item in Model)
+    {
+        <div class="col-3" style="float: left; margin: 15px; margin-left: 50px;">
+
+            <img src="~/images/thietbi/@item.HINHANH" style="width: 100%; height: 100%; text-align: center;">
+            @if (item.TENTB.Length > 30)
+            {
+                <p style="text-align: center;">
+                    <strong title="@item.TENTB">@item.TENTB.Substring(0, 30)...</strong><br />
+                    <a class="btn btn-secondary" href="@Url.Action("DangKyMuonTB", new{@msp =item.MATB})" style="text-decoration: none">Xem chi tiết</a>
+                </p>
+            }
+            else
+            {
+                <p style="text-align: center;">
+                    <strong title="@item.TENTB">@item.TENTB</strong><br />
+                    <a class="btn btn-secondary" href="@Url.Action("DangKyMuonTB", new{@msp = item.MATB})" style="text-decoration: none">Xem chi tiết</a>
+                </p>
+            }
+        </div>
+    }
+}
